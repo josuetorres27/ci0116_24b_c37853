@@ -87,7 +87,7 @@ class Ordenador {
         }
       }
       /** Se intercambia el elemento más pequeño encontrado con A[i]. */
-      swap(A[i], A[m]);
+      std::swap(A[i], A[m]);
     }
   }
 
@@ -111,7 +111,7 @@ class Ordenador {
     if (A == nullptr || n <= 0) return;  /**< Verificación defensiva de entrada. */
 
     /** Llamado a la función recursiva para ordenar el arreglo completo. */
-    mezclarRec(A, 0, n - 1);
+    mezclaRec(A, 0, n - 1);
   }
 
   void ordenamientoPorMonticulos(int *A, int n) const;
@@ -125,6 +125,6 @@ class Ordenador {
    * @return std::string Una cadena de texto con los datos de la tarea.
    */
   constexpr const char* datosDeTarea() const {
-    return "Carné: C37853, Nombre: Josué Torres Sibaja, Tarea 1, Etapa 1"
+    return "Carné: C37853, Nombre: Josué Torres Sibaja, Tarea 1, Etapa 1";
   }
 };
