@@ -17,19 +17,19 @@ class Ordenador {
 
   /** Función auxiliar para el ordenamiento por mezcla. */
   void mezclar(int* A, int p, int q, int r) const {
-    int nL = q - p + 1;  /**< Tamaño del subarreglo izquierdo. */
-    int nR = r - q;  /**< Longitud del subarreglo derecho. */
+    int nI = q - p + 1;  /**< Tamaño del subarreglo izquierdo. */
+    int nD = r - q;  /**< Longitud del subarreglo derecho. */
 
     /** Crear los subarreglos temporales L y R. */
-    std::vector<int> L(nL);
-    std::vector<int> R(nR);
+    std::vector<int> L(nI);
+    std::vector<int> R(nD);
 
     /** Copiar los elementos del subarreglo A[p:q] en L. */
-    for (int i = 0; i < nL; ++i) {
+    for (int i = 0; i < nI; ++i) {
       L[i] = A[p + i];
     }
     /** Copiar los elementos del subarreglo A[q+1:r] en R. */
-    for (int j = 0; j < nR; ++j) {
+    for (int j = 0; j < nD; ++j) {
       R[j] = A[q + 1 + j];
     }
 
@@ -37,7 +37,7 @@ class Ordenador {
     int i = 0, j = 0, k = p;
 
     /** Se mezclan los subarreglos L y R de regreso en A[p:r]. */
-    while (i < nL && j < nR) {
+    while (i < nI && j < nD) {
       if (L[i] <= R[j]) {
         A[k] = L[i];
         i = i + 1;
@@ -49,13 +49,13 @@ class Ordenador {
     }
 
     /** Si quedan elementos en L, se copian en A. */
-    while (i < nL) {
+    while (i < nI) {
       A[k] = L[i];
       i = i + 1;
       k = k + 1;
     }
     /** Si quedan elementos en R, se copian en A. */
-    while (j < nR) {
+    while (j < nD) {
       A[k] = R[j];
       j = j + 1;
       k = k + 1;
