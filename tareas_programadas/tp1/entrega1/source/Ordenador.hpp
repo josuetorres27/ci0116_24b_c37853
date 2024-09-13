@@ -1,3 +1,5 @@
+using namespace std;
+
 #pragma once
 
 class Ordenador {
@@ -21,8 +23,8 @@ class Ordenador {
     int nD = r - q;  /**< Longitud del subarreglo derecho. */
 
     /** Crear los subarreglos temporales L y R. */
-    std::vector<int> L(nI);
-    std::vector<int> R(nD);
+    vector<int> L(nI);
+    vector<int> R(nD);
 
     /** Copiar los elementos del subarreglo A[p:q] en L. */
     for (int i = 0; i < nI; ++i) {
@@ -87,7 +89,7 @@ class Ordenador {
         }
       }
       /** Se intercambia el elemento más pequeño encontrado con A[i]. */
-      std::swap(A[i], A[m]);
+      swap(A[i], A[m]);
     }
   }
 
@@ -119,12 +121,12 @@ class Ordenador {
   void ordenamientoPorRadix(int *A, int n) const;
 
   /**
-   * @brief Retorna un std::string con los datos de la tarea.
+   * @brief Retorna un string con los datos de la tarea.
    * 
    * @details Este método devuelve una cadena de texto que contiene el carné, nombre y tarea.
-   * @return std::string Una cadena de texto con los datos de la tarea.
+   * @return string Una cadena de texto con los datos de la tarea.
    */
   constexpr const char* datosDeTarea() const {
-    return "Carné: C37853, Nombre: Josué Torres Sibaja, Tarea 1, Etapa 1";
+    return "Carnet: C37853, Nombre: Josue Torres Sibaja, Tarea 1, Etapa 1";
   }
 };
