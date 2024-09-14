@@ -25,16 +25,16 @@ class Ordenador {
     int nD = r - q;  /** Longitud del subarreglo derecho. */
 
     /** Crear los subarreglos temporales L y R. */
-    vector<int> L(nI);
-    vector<int> R(nD);
+    vector<int> I(nI);
+    vector<int> D(nD);
 
     /** Copiar los elementos del subarreglo A[p:q] en L. */
     for (int i = 0; i < nI; ++i) {
-      L[i] = A[p + i];
+      I[i] = A[p + i];
     }
     /** Copiar los elementos del subarreglo A[q+1:r] en R. */
     for (int j = 0; j < nD; ++j) {
-      R[j] = A[q + 1 + j];
+      D[j] = A[q + 1 + j];
     }
 
     /** i: índice del subarreglo L. j: índice del subarreglo R. k: índice del arreglo original. */
@@ -42,11 +42,11 @@ class Ordenador {
 
     /** Se mezclan los subarreglos L y R de regreso en A[p:r]. */
     while (i < nI && j < nD) {
-      if (L[i] <= R[j]) {
-        A[k] = L[i];
+      if (I[i] <= D[j]) {
+        A[k] = I[i];
         i = i + 1;
       } else {
-        A[k] = R[j];
+        A[k] = D[j];
         j = j + 1;
       }
       k = k + 1;
@@ -54,13 +54,13 @@ class Ordenador {
 
     /** Si quedan elementos en L, se copian en A. */
     while (i < nI) {
-      A[k] = L[i];
+      A[k] = I[i];
       i = i + 1;
       k = k + 1;
     }
     /** Si quedan elementos en R, se copian en A. */
     while (j < nD) {
-      A[k] = R[j];
+      A[k] = D[j];
       j = j + 1;
       k = k + 1;
     }
