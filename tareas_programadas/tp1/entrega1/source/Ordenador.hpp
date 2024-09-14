@@ -1,3 +1,5 @@
+#include <iostream>
+#include <vector>
 using namespace std;
 
 #pragma once
@@ -9,18 +11,18 @@ class Ordenador {
 
   /** Función recursiva para el ordenamiento por mezcla. */
   void mezclaRec(int *A, int p, int r) const {
-    if (p >= r) return;  /**< Caso de arreglo de un elemento o rango incorrecto. */
+    if (p >= r) return;  /** Caso de arreglo de un elemento o rango incorrecto. */
 
-    int q = (p + r) / 2;  /**< Calcular el punto medio. */
-    mezclaRec(A, p, q);  /**< Ordenar la primera mitad. */
-    mezclaRec(A, q + 1, r);  /**< Ordenar la segunda mitad. */
-    mezclar(A, p, q, r);  /**< Mezclar ambas partes. */
+    int q = (p + r) / 2;  /** Calcular el punto medio. */
+    mezclaRec(A, p, q);  /** Ordenar la primera mitad. */
+    mezclaRec(A, q + 1, r);  /** Ordenar la segunda mitad. */
+    mezclar(A, p, q, r);  /** Mezclar ambas partes. */
   }
 
   /** Función auxiliar para el ordenamiento por mezcla. */
   void mezclar(int* A, int p, int q, int r) const {
-    int nI = q - p + 1;  /**< Tamaño del subarreglo izquierdo. */
-    int nD = r - q;  /**< Longitud del subarreglo derecho. */
+    int nI = q - p + 1;  /** Tamaño del subarreglo izquierdo. */
+    int nD = r - q;  /** Longitud del subarreglo derecho. */
 
     /** Crear los subarreglos temporales L y R. */
     vector<int> L(nI);
@@ -79,10 +81,10 @@ class Ordenador {
   */
 
   void ordenamientoPorSeleccion(int *A, int n) const {
-    if (A == nullptr || n <= 0) return;  /**< Verificación defensiva de entrada. */
+    if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
 
     for (int i = 0; i < n - 1; ++i) {
-      int m = i;  /**< m es el índice del elemento más pequeño. */
+      int m = i;  /** m es el índice del elemento más pequeño. */
       for (int j = i + 1; j < n; ++j) {
         if (A[j] < A[m]) {
           m = j;  // Actualizar m si se encuentra un elemento más pequeño. */
@@ -94,10 +96,10 @@ class Ordenador {
   }
 
   void ordenamientoPorInsercion(int *A, int n) const {
-    if (A == nullptr || n <= 0) return;  /**< Verificación defensiva de entrada. */
+    if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
 
     for (int i = 1; i < n; ++i) {
-      int key = A[i];  /**< Se guarda el elemento actual. */
+      int key = A[i];  /** Se guarda el elemento actual. */
       int j = i - 1;
       /** Se mueven los elementos mayores que key una posición adelante. */
       while (j >= 0 && A[j] > key) {
@@ -110,7 +112,7 @@ class Ordenador {
   }
 
   void ordenamientoPorMezcla(int *A, int n) const {
-    if (A == nullptr || n <= 0) return;  /**< Verificación defensiva de entrada. */
+    if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
 
     /** Llamado a la función recursiva para ordenar el arreglo completo. */
     mezclaRec(A, 0, n - 1);

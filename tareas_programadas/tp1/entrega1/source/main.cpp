@@ -1,5 +1,3 @@
-#include <iostream>
-#include <vector>
 #include <algorithm>
 #include <chrono>
 #include <cstdlib>
@@ -12,7 +10,8 @@ vector<int> arregloAleatorio(int tam) {
   srand(time(0));  /** Semilla para los números aleatorios. */
   vector<int> arreglo(tam);
   for (int i = 0; i < tam; ++i) {
-    arreglo[i] = rand() % INT_MAX + 1;  /** Generar números positivos hasta el número máximo posible. */
+    /** Generar números positivos hasta el número máximo posible. */
+    arreglo[i] = rand() % INT_MAX + 1;
   }
   return arreglo;
 }
