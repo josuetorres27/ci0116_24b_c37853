@@ -129,6 +129,6 @@ class Ordenador {
    * @return string Una cadena de texto con los datos de la tarea.
    */
   constexpr const char* datosDeTarea() const {
-    return "Carnet: C37853, Nombre: Josue Torres Sibaja, Tarea 1, Etapa 1";
+    return "Carnet: C37853, Nombre: Josue Torres Sibaja, Tarea Programada 1, Entrega 1";
   }
 };
