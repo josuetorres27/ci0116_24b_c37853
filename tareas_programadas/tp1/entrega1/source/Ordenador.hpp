@@ -4,12 +4,30 @@ using namespace std;
 
 #pragma once
 
+/**
+ * @class Ordenador
+ * @brief Clase que implementa varios algoritmos de ordenamiento.
+ * 
+ * @details Esta clase incluye los métodos para realizar ordenamiento
+ * utilizando los algoritmos de selección, inserción y mezcla, así como
+ * encabezados para otros algoritmos que serán implementados en el futuro. Los
+ * métodos hacen uso de programación defensiva y están basados en el
+ * pseudocódigo provisto en el libro de Cormen y colaboradores. La
+ * implementación de cada algoritmo se realiza dentro del cuerpo de la clase
+ * para garantizar una correcta compilación y ejecución.
+ */
 class Ordenador {
   private:
   // Defina aqui los metodos auxiliares de los algoritmos de ordenamiento solamente.
   // Puede definir cuantos metodos quiera.
 
-  /** Función recursiva para el ordenamiento por mezcla. */
+  /**
+   * @brief Función recursiva auxiliar para el algoritmo de ordenamiento por mezcla.
+   * 
+   * @param A Arreglo a ordenar.
+   * @param p Índice de inicio del subarreglo.
+   * @param r Índice final del subarreglo.
+   */
   void mezclaRec(int *A, int p, int r) const {
     if (p >= r) return;  /** Caso de arreglo de un elemento o rango incorrecto. */
 
@@ -19,7 +37,14 @@ class Ordenador {
     mezclar(A, p, q, r);  /** Mezclar ambas partes. */
   }
 
-  /** Función auxiliar para el ordenamiento por mezcla. */
+  /**
+   * @brief Función auxiliar que mezcla dos subarreglos.
+   * 
+   * @param A Arreglo a ordenar.
+   * @param p Índice de inicio del subarreglo.
+   * @param q Punto medio del subarreglo.
+   * @param r Índice final del subarreglo.
+   */
   void mezclar(int* A, int p, int q, int r) const {
     int nI = q - p + 1;  /** Tamaño del subarreglo izquierdo. */
     int nD = r - q;  /** Longitud del subarreglo derecho. */
@@ -27,7 +52,6 @@ class Ordenador {
     /** Crear los subarreglos temporales L y R. */
     vector<int> I(nI);
     vector<int> D(nD);
-
     /** Copiar los elementos del subarreglo A[p:q] en L. */
     for (int i = 0; i < nI; ++i) {
       I[i] = A[p + i];
@@ -36,7 +60,6 @@ class Ordenador {
     for (int j = 0; j < nD; ++j) {
       D[j] = A[q + 1 + j];
     }
-
     /** i: índice del subarreglo L. j: índice del subarreglo R. k: índice del arreglo original. */
     int i = 0, j = 0, k = p;
 
@@ -51,7 +74,6 @@ class Ordenador {
       }
       k = k + 1;
     }
-
     /** Si quedan elementos en L, se copian en A. */
     while (i < nI) {
       A[k] = I[i];
@@ -80,6 +102,12 @@ class Ordenador {
      Ante un error, basta con que el método no modifique el arreglo original y que no cause la caída del programa.
   */
 
+  /**
+   * @brief Algoritmo de ordenamiento por selección.
+   * 
+   * @param A Arreglo a ordenar.
+   * @param n Tamaño del arreglo.
+   */
   void ordenamientoPorSeleccion(int *A, int n) const {
     if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
 
@@ -95,6 +123,12 @@ class Ordenador {
     }
   }
 
+  /**
+   * @brief Algoritmo de ordenamiento por inserción.
+   * 
+   * @param A Arreglo a ordenar.
+   * @param n Tamaño del arreglo.
+   */
   void ordenamientoPorInsercion(int *A, int n) const {
     if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
 
@@ -111,6 +145,12 @@ class Ordenador {
     }
   }
 
+  /**
+   * @brief Algoritmo de ordenamiento por mezcla.
+   * 
+   * @param A Arreglo a ordenar.
+   * @param n Tamaño del arreglo.
+   */
   void ordenamientoPorMezcla(int *A, int n) const {
     if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
 
@@ -129,6 +169,6 @@ class Ordenador {
    * @return string Una cadena de texto con los datos de la tarea.
    */
   constexpr const char* datosDeTarea() const {
-    return "Carnet: C37853, Nombre: Josue Torres Sibaja, Tarea Programada 1, Entrega 1";
+    return "Carnet: C37853, Nombre: Josue Torres Sibaja, Tarea 1, Etapa 1";
   }
 };
