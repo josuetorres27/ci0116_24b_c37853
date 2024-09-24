@@ -21,6 +21,30 @@ class Ordenador {
   // Defina aqui los metodos auxiliares de los algoritmos de ordenamiento solamente.
   // Puede definir cuantos metodos quiera.
 
+  /** Función recursiva para aplicar el ordenamiento rápido. */
+  void quickRec(int *A, int p, int r) const {
+    if (p < r) {
+      int q = partition(A, p, r);  /** Particionar el arreglo. */
+      quickRec(A, p, q - 1);  /** Ordenamos recursivamente el lado bajo. */
+      quickRec(A, q + 1, r);  /** Ordenamos recursivamente el lado alto. */
+    }
+  }
+
+  int partition(int *A, int p, int r) const {
+    int x = A[r];  /** El pivote es el último elemento. */
+    int i = p - 1;  /** Índice más alto del lado bajo. */
+
+    for (int j = p; j <= r - 1; j++) {
+      if (A[j] <= x) {  /** Si el elemento pertenece al lado bajo. */
+        i = i + 1;  /** Incrementamos el índice del lado bajo. */
+        swap(A[i], A[j]);  /** Intercambiamos A[i] con A[j]. */
+      }
+    }
+    /** Colocamos el pivote en su lugar correcto. */
+    swap(A[i + 1], A[r]);
+    return i + 1;  /** Devolvemos la nueva posición del pivote. */
+  }
+
   /** Devuelve el índice del padre de un nodo. */
   int parent(int i) const {
     return (i - 1) / 2;
@@ -209,7 +233,10 @@ class Ordenador {
     }
   }
 
-  void ordenamientoRapido(int *A, int n) const;
+  void ordenamientoRapido(int *A, int n) const {
+    quickRec(A, 0, n - 1);  /** Llama a la función quickRec sobre todo el arreglo. */
+  }
+
   void ordenamientoPorRadix(int *A, int n) const;
 
   /**

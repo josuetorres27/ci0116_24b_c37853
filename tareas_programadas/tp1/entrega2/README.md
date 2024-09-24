@@ -1,4 +1,4 @@
-# Tarea Programada 1 - Entrega 1
+# Tarea Programada 1 - Entrega 2
 
 ### Nombre del estudiante y carnet
 Josué Torres Sibaja, C37853
