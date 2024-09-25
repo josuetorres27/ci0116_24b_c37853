@@ -1,3 +1,4 @@
+#include <cmath>
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -31,25 +32,25 @@ class Ordenador {
     return max;
   }
 
-  /** Función de ordenamiento por conteo (modificada para trabajar con dígitos). */
-  void countingSort(int *A, int n, int exp) const {
+  /** Función de ordenamiento por conteo (modificada para trabajar con dígitos en cierta base). */
+  void Ordenador::countingSort(int *A, int n, int exp, int base) const {
     int B[n];  /** Arreglo auxiliar. */
-    int C[10] = {0};  /** Contador para los dígitos (0-9). */
+    int C[base] = {0};  /** Contador para los dígitos (0 a base-1). */
 
     /** Contar cuántas veces aparece cada dígito en la posición exp. */
     for (int i = 0; i < n; i++) {
-      int index = (A[i] / exp) % 10;  /** Obtener el dígito correspondiente. */
+      int index = (A[i] / exp) % base;  /** Obtener el dígito correspondiente. */
       C[index]++;
     }
 
     /** Modificar C para que contenga las posiciones finales de los dígitos en B. */
-    for (int i = 1; i < 10; i++) {
+    for (int i = 1; i < base; i++) {
       C[i] += C[i - 1];
     }
 
     /** Construir el arreglo ordenado B. */
     for (int i = n - 1; i >= 0; i--) {
-      int index = (A[i] / exp) % 10;
+      int index = (A[i] / exp) % base;
       B[C[index] - 1] = A[i];
       C[index]--;
     }
@@ -279,9 +280,12 @@ class Ordenador {
   void ordenamientoPorRadix(int *A, int n) const {
     int max = obtenerMax(A, n);  /** Encuentra el valor máximo para saber el número de dígitos. */
 
-    /** Aplicar Counting Sort para cada dígito. Exp es 10^i donde i es la posición del dígito. */
-    for (int exp = 1; max / exp > 0; exp *= 10) {
-        countingSort(A, n, exp);
+    /** Calcular la base como 2^(log2(n)). */
+    int base = pow(2, floor(log2(n)));
+
+    /** Aplicar Counting Sort para cada dígito. Exp es la potencia de la base. */
+    for (int exp = 1; max / exp > 0; exp *= base) {
+      countingSort(A, n, exp, base);
     }
   }
 
