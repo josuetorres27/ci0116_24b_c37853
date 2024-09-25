@@ -33,7 +33,7 @@ class Ordenador {
   }
 
   /** Función de ordenamiento por conteo (modificada para trabajar con dígitos en cierta base). */
-  void Ordenador::countingSort(int *A, int n, int exp, int base) const {
+  void countingSort(int *A, int n, int exp, int base) const {
     int B[n];  /** Arreglo auxiliar. */
     int C[base] = {0};  /** Contador para los dígitos (0 a base-1). */
 

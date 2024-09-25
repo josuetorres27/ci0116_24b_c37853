@@ -31,12 +31,17 @@ int main() {
   Ordenador ordenador;
 
   vector<int> tams = {50000, 100000, 150000, 200000};
-  vector<string> algoritmos = {"Seleccion", "Insercion", "Mezcla"};
+  vector<string> algoritmos = {"Monticulos", "Rapido", "Residuos"};
   cout<<"Tiempos de ejecucion\n";
   cout<<"\n";
 
   for (int i = 0; i < (end(algoritmos)-begin(algoritmos)); i++) {
-    cout<<"----- Algoritmo por "<<algoritmos[i]<<" -----\n";
+    if (i == 1) {
+      cout<<"----- Ordenamiento "<<algoritmos[i]<<" -----\n";
+    }
+    else {
+      cout<<"----- Ordenamiento por "<<algoritmos[i]<<" -----\n";
+    }
     cout<<"\n";
     /** Probar con cada tamaño de arreglo. */
     for (int tam : tams) {
@@ -47,20 +52,20 @@ int main() {
       /** Ejecutar el algoritmo 3 veces con el mismo arreglo. */
       for (int j = 0; j < 3; j++) {
         double tiempo;
-        if (algoritmos[i] == "Seleccion") {
+        if (algoritmos[i] == "Monticulos") {
           /** Medir el tiempo de ejecución. */
           tiempo = medirTiempo(ordenador, &Ordenador::
-            ordenamientoPorSeleccion, arreglo);
+            ordenamientoPorMonticulos, arreglo);
         }
-        if (algoritmos[i] == "Insercion") {
+        if (algoritmos[i] == "Rapido") {
           /** Medir el tiempo de ejecución. */
           tiempo = medirTiempo(ordenador, &Ordenador::
-            ordenamientoPorInsercion, arreglo);
+            ordenamientoRapido, arreglo);
         }
-        if (algoritmos[i] == "Mezcla") {
+        if (algoritmos[i] == "Residuos") {
           /** Medir el tiempo de ejecución. */
           tiempo = medirTiempo(ordenador, &Ordenador::
-            ordenamientoPorMezcla, arreglo);
+            ordenamientoPorRadix, arreglo);
         }
         tiempos.push_back(tiempo);
         cout<<"Tamano: "<<tam<<" | Tiempo de ejecucion: "<<tiempo<<" ms\n";
