@@ -21,6 +21,45 @@ class Ordenador {
   // Defina aqui los metodos auxiliares de los algoritmos de ordenamiento solamente.
   // Puede definir cuantos metodos quiera.
 
+  int obtenerMax(int *A, int n) const {
+    int max = A[0];
+    for (int i = 1; i < n; i++) {
+      if (A[i] > max) {
+        max = A[i];
+      }
+    }
+    return max;
+  }
+
+  /** Función de ordenamiento por conteo (modificada para trabajar con dígitos). */
+  void countingSort(int *A, int n, int exp) const {
+    int B[n];  /** Arreglo auxiliar. */
+    int C[10] = {0};  /** Contador para los dígitos (0-9). */
+
+    /** Contar cuántas veces aparece cada dígito en la posición exp. */
+    for (int i = 0; i < n; i++) {
+      int index = (A[i] / exp) % 10;  /** Obtener el dígito correspondiente. */
+      C[index]++;
+    }
+
+    /** Modificar C para que contenga las posiciones finales de los dígitos en B. */
+    for (int i = 1; i < 10; i++) {
+      C[i] += C[i - 1];
+    }
+
+    /** Construir el arreglo ordenado B. */
+    for (int i = n - 1; i >= 0; i--) {
+      int index = (A[i] / exp) % 10;
+      B[C[index] - 1] = A[i];
+      C[index]--;
+    }
+
+    /** Copiar B a A, que ahora contiene los elementos ordenados por el dígito actual. */
+    for (int i = 0; i < n; i++) {
+      A[i] = B[i];
+    }
+  }
+
   /** Función recursiva para aplicar el ordenamiento rápido. */
   void quickRec(int *A, int p, int r) const {
     if (p < r) {
@@ -237,7 +276,14 @@ class Ordenador {
     quickRec(A, 0, n - 1);  /** Llama a la función quickRec sobre todo el arreglo. */
   }
 
-  void ordenamientoPorRadix(int *A, int n) const;
+  void ordenamientoPorRadix(int *A, int n) const {
+    int max = obtenerMax(A, n);  /** Encuentra el valor máximo para saber el número de dígitos. */
+
+    /** Aplicar Counting Sort para cada dígito. Exp es 10^i donde i es la posición del dígito. */
+    for (int exp = 1; max / exp > 0; exp *= 10) {
+        countingSort(A, n, exp);
+    }
+  }
 
   /**
    * @brief Retorna un string con los datos de la tarea.
