@@ -29,9 +29,9 @@ double medirTiempo(Ordenador& ordenador, void (Ordenador::*metodo)(int*, int)
 
 int main() {
   Ordenador ordenador;
-
   vector<int> tams = {50000, 100000, 150000, 200000};
-  vector<string> algoritmos = {"Monticulos", "Rapido", "Residuos"};
+  vector<string> algoritmos = {"Seleccion", "Insercion", "Mezcla",
+    "Monticulos", "Rapido", "Residuos"};
   cout<<"Tiempos de ejecucion\n";
   cout<<"\n";
 
@@ -52,6 +52,21 @@ int main() {
       /** Ejecutar el algoritmo 3 veces con el mismo arreglo. */
       for (int j = 0; j < 3; j++) {
         double tiempo;
+        if (algoritmos[i] == "Seleccion") {
+          /** Medir el tiempo de ejecución. */
+          tiempo = medirTiempo(ordenador, &Ordenador::
+            ordenamientoPorSeleccion, arreglo);
+        }
+        if (algoritmos[i] == "Insercion") {
+          /** Medir el tiempo de ejecución. */
+          tiempo = medirTiempo(ordenador, &Ordenador::
+            ordenamientoPorInsercion, arreglo);
+        }
+        if (algoritmos[i] == "Mezcla") {
+          /** Medir el tiempo de ejecución. */
+          tiempo = medirTiempo(ordenador, &Ordenador::
+            ordenamientoPorMezcla, arreglo);
+        }
         if (algoritmos[i] == "Monticulos") {
           /** Medir el tiempo de ejecución. */
           tiempo = medirTiempo(ordenador, &Ordenador::

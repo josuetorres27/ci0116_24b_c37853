@@ -9,22 +9,50 @@ using namespace std;
  * @class Ordenador
  * @brief Clase que implementa varios algoritmos de ordenamiento.
  * 
- * @details Esta clase incluye los métodos para realizar ordenamiento
- * utilizando los algoritmos de selección, inserción y mezcla, así como
- * encabezados para otros algoritmos que serán implementados en el futuro. Los
- * métodos hacen uso de programación defensiva y están basados en el
- * pseudocódigo provisto en el libro de Cormen y colaboradores. La
- * implementación de cada algoritmo se realiza dentro del cuerpo de la clase
- * para garantizar una correcta compilación y ejecución.
+ * @details Esta clase incluye los métodos para ordenar arreglos de valores
+ * utilizando los algoritmos de selección, inserción, mezcla, por montículos,
+ * ordenamiento rápido y ordenamiento por residuos. Los métodos hacen uso de
+ * programación defensiva y están basados en el pseudocódigo provisto en el
+ * libro de Cormen y colaboradores. La implementación de cada algoritmo se
+ * realiza dentro del cuerpo de la clase para garantizar una correcta
+ * compilación y ejecución.
  */
 class Ordenador {
   private:
-  // Defina aqui los metodos auxiliares de los algoritmos de ordenamiento solamente.
-  // Puede definir cuantos metodos quiera.
+  /**
+   * @brief Obtiene el valor de un dígito específico a partir de un conjunto de bits.
+   * 
+   * @param num El número del que se extraerá el dígito.
+   * @param bitPos La posición de inicio de los bits que se desean extraer.
+   * @param mascara La máscara utilizada para extraer los bits correspondientes.
+   * @return El valor del dígito extraído.
+   */
+  int obtenerValorDigito(int num, int bitPos, int mascara) const {
+    return (num >> bitPos) & mascara;
+  }
 
-  int obtenerMax(int *A, int n) const {
+  /**
+   * @brief Calcula el logaritmo en base 2 de un número entero.
+   * 
+   * @param n El número para el cual se desea calcular el logaritmo.
+   * @return El logaritmo en base 2 de n, aproximado a un entero.
+   */
+  int calcularLog(int n) const {
+    int log = 0;
+    while (n >>= 1) ++log;
+    return log;
+  }
+
+  /**
+   * @brief Encuentra el valor máximo en un arreglo.
+   * 
+   * @param A El arreglo de enteros.
+   * @param n La cantidad de elementos en el arreglo.
+   * @return El valor máximo encontrado en el arreglo.
+   */
+  int encontrarValorMaximo(const int* A, int n) const {
     int max = A[0];
-    for (int i = 1; i < n; i++) {
+    for (int i = 1; i < n; ++i) {
       if (A[i] > max) {
         max = A[i];
       }
@@ -32,98 +60,90 @@ class Ordenador {
     return max;
   }
 
-  /** Función de ordenamiento por conteo (modificada para trabajar con dígitos en cierta base). */
-  void countingSort(int *A, int n, int exp, int base) const {
-    int B[n];  /** Arreglo auxiliar. */
-    int C[base] = {0};  /** Contador para los dígitos (0 a base-1). */
-
-    /** Contar cuántas veces aparece cada dígito en la posición exp. */
-    for (int i = 0; i < n; i++) {
-      int index = (A[i] / exp) % base;  /** Obtener el dígito correspondiente. */
-      C[index]++;
-    }
-
-    /** Modificar C para que contenga las posiciones finales de los dígitos en B. */
-    for (int i = 1; i < base; i++) {
-      C[i] += C[i - 1];
-    }
-
-    /** Construir el arreglo ordenado B. */
-    for (int i = n - 1; i >= 0; i--) {
-      int index = (A[i] / exp) % base;
-      B[C[index] - 1] = A[i];
-      C[index]--;
-    }
-
-    /** Copiar B a A, que ahora contiene los elementos ordenados por el dígito actual. */
-    for (int i = 0; i < n; i++) {
-      A[i] = B[i];
-    }
-  }
-
-  /** Función recursiva para aplicar el ordenamiento rápido. */
-  void quickRec(int *A, int p, int r) const {
+  /**
+   * @brief Realiza el ordenamiento rápido de forma recursiva.
+   * 
+   * @param A Arreglo a ordenar.
+   * @param p Índice inicial del subarreglo.
+   * @param r Índice final del subarreglo.
+   */
+  void rapidoRec(int *A, int p, int r) const {
     if (p < r) {
-      int q = partition(A, p, r);  /** Particionar el arreglo. */
-      quickRec(A, p, q - 1);  /** Ordenamos recursivamente el lado bajo. */
-      quickRec(A, q + 1, r);  /** Ordenamos recursivamente el lado alto. */
+      int q = particionar(A, p, r);  /** Particionar el arreglo. */
+      rapidoRec(A, p, q - 1);  /** Ordenar recursivamente el lado bajo. */
+      rapidoRec(A, q + 1, r);  /** Ordenar recursivamente el lado alto. */
     }
   }
 
-  int partition(int *A, int p, int r) const {
+  /**
+   * @brief Particiona el arreglo según el pivote para el ordenamiento rápido.
+   * 
+   * @param A Arreglo a particionar.
+   * @param p Índice inicial del subarreglo.
+   * @param r Índice final del subarreglo (donde está el pivote).
+   * @return Índice del pivote después de la partición.
+   */
+  int particionar(int *A, int p, int r) const {
     int x = A[r];  /** El pivote es el último elemento. */
     int i = p - 1;  /** Índice más alto del lado bajo. */
 
     for (int j = p; j <= r - 1; j++) {
       if (A[j] <= x) {  /** Si el elemento pertenece al lado bajo. */
-        i = i + 1;  /** Incrementamos el índice del lado bajo. */
-        swap(A[i], A[j]);  /** Intercambiamos A[i] con A[j]. */
+        i = i + 1;  /** Incrementar el índice del lado bajo. */
+        swap(A[i], A[j]);  /** Intercambiar A[i] con A[j]. */
       }
     }
-    /** Colocamos el pivote en su lugar correcto. */
+    /** Colocar el pivote en su lugar correcto. */
     swap(A[i + 1], A[r]);
-    return i + 1;  /** Devolvemos la nueva posición del pivote. */
+    return i + 1;  /** Devolver la nueva posición del pivote. */
   }
 
   /** Devuelve el índice del padre de un nodo. */
-  int parent(int i) const {
+  int padre(int i) const {
     return (i - 1) / 2;
   }
 
   /** Devuelve el índice del hijo izquierdo. */
-  int left(int i) const {
+  int izquierdo(int i) const {
     return 2 * i + 1;
   }
 
   /** Devuelve el índice del hijo derecho. */
-  int right(int i) const {
+  int derecho(int i) const {
     return 2 * i + 2;
   }
 
-  void maxHeapify(int *A, int heapSize, int i) const {
-    int l = left(i);
-    int r = right(i);
-    int largest = i;
+  /**
+   * @brief Mantiene la propiedad de montículo máximo en un subárbol.
+   * 
+   * @param A Arreglo que representa el montículo.
+   * @param tamMonticulo Tamaño del montículo.
+   * @param i Índice de la raíz del subárbol que se va a "monticulizar".
+   */
+  void monticuloMax(int *A, int tamMonticulo, int i) const {
+    int i = izquierdo(i);
+    int d = derecho(i);
+    int nodo = i;
 
     /** Si el hijo izquierdo es mayor que el nodo actual. */
-    if (l < heapSize && A[l] > A[largest])
-      largest = l;
+    if (i < tamMonticulo && A[i] > A[nodo])
+      nodo = i;
 
     /** Si el hijo derecho es mayor que el nodo más grande encontrado hasta ahora. */
-    if (r < heapSize && A[r] > A[largest])
-      largest = r;
+    if (d < tamMonticulo && A[d] > A[nodo])
+      nodo = d;
 
     /** Si el nodo más grande no es el nodo actual. */
-    if (largest != i) {
-      swap(A[i], A[largest]);
-      maxHeapify(A, heapSize, largest);  /** Aplica maxHeapify recursivamente. */
+    if (nodo != i) {
+      swap(A[i], A[nodo]);
+      monticuloMax(A, tamMonticulo, nodo);  /** Aplicar monticuloMax recursivamente. */
     }
   }
 
   /** Función para construir un max-heap a partir del arreglo. */
-  void buildMaxHeap(int *A, int n) const {
+  void monticulizar(int *A, int n) const {
     for (int i = (n / 2) - 1; i >= 0; --i) {
-      maxHeapify(A, n, i);
+      monticuloMax(A, n, i);
     }
   }
 
@@ -155,21 +175,21 @@ class Ordenador {
     int nI = q - p + 1;  /** Tamaño del subarreglo izquierdo. */
     int nD = r - q;  /** Longitud del subarreglo derecho. */
 
-    /** Crear los subarreglos temporales L y R. */
+    /** Crear los subarreglos temporales I y D. */
     vector<int> I(nI);
     vector<int> D(nD);
-    /** Copiar los elementos del subarreglo A[p:q] en L. */
+    /** Copiar los elementos del subarreglo A[p:q] en I. */
     for (int i = 0; i < nI; ++i) {
       I[i] = A[p + i];
     }
-    /** Copiar los elementos del subarreglo A[q+1:r] en R. */
+    /** Copiar los elementos del subarreglo A[q+1:r] en D. */
     for (int j = 0; j < nD; ++j) {
       D[j] = A[q + 1 + j];
     }
-    /** i: índice del subarreglo L. j: índice del subarreglo R. k: índice del arreglo original. */
+    /** i: índice del subarreglo I. j: índice del subarreglo D. k: índice del arreglo original. */
     int i = 0, j = 0, k = p;
 
-    /** Se mezclan los subarreglos L y R de regreso en A[p:r]. */
+    /** Se mezclan los subarreglos I y D de regreso en A[p:r]. */
     while (i < nI && j < nD) {
       if (I[i] <= D[j]) {
         A[k] = I[i];
@@ -180,13 +200,13 @@ class Ordenador {
       }
       k = k + 1;
     }
-    /** Si quedan elementos en L, se copian en A. */
+    /** Si quedan elementos en I, se copian en A. */
     while (i < nI) {
       A[k] = I[i];
       i = i + 1;
       k = k + 1;
     }
-    /** Si quedan elementos en R, se copian en A. */
+    /** Si quedan elementos en D, se copian en A. */
     while (j < nD) {
       A[k] = D[j];
       j = j + 1;
@@ -197,16 +217,6 @@ class Ordenador {
   public:
   Ordenador() = default;
   ~Ordenador() = default;
-
-  /* Nota:
-   - Si no planea implementar algunos de los métodos de ordenamiento, no los borre.
-   - Simplemente déjelos con el cuerpo vacío para evitar errores de compilación, ya
-     que se ejecutará el mismo main para todas las tareas.
-   - Recuerde hacer uso de programación defensiva y documentar los métodos con formato Doxygen, por ejemplo.
-   - No cambié la firma de los métodos de la clase Ordenador.
-   - No lance excepciones para el manejo de errores.
-     Ante un error, basta con que el método no modifique el arreglo original y que no cause la caída del programa.
-  */
 
   /**
    * @brief Algoritmo de ordenamiento por selección.
@@ -239,15 +249,15 @@ class Ordenador {
     if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
 
     for (int i = 1; i < n; ++i) {
-      int key = A[i];  /** Se guarda el elemento actual. */
+      int valorClave = A[i];  /** Se guarda el elemento actual. */
       int j = i - 1;
-      /** Se mueven los elementos mayores que key una posición adelante. */
-      while (j >= 0 && A[j] > key) {
+      /** Se mueven los elementos mayores que valorClave una posición adelante. */
+      while (j >= 0 && A[j] > valorClave) {
         A[j + 1] = A[j];
         --j;
       }
-      /** Insertar key en la posición correcta. */
-      A[j + 1] = key;
+      /** Insertar valorClave en la posición correcta. */
+      A[j + 1] = valorClave;
     }
   }
 
@@ -264,29 +274,84 @@ class Ordenador {
     mezclaRec(A, 0, n - 1);
   }
 
+  /**
+   * @brief Algoritmo de ordenamiento por montículos.
+   * 
+   * @param A Arreglo a ordenar.
+   * @param n Tamaño del arreglo.
+   */
   void ordenamientoPorMonticulos(int *A, int n) const {
-    buildMaxHeap(A, n);  /** Construye el max-heap. */
+    if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
+
+    monticulizar(A, n);  /** Construye el max-heap. */
 
     for (int i = n - 1; i >= 1; --i) {
       swap(A[0], A[i]);  /** Mueve el mayor elemento al final. */
-      maxHeapify(A, i, 0);  /** Aplica maxHeapify al subárbol reducido. */
+      monticuloMax(A, i, 0);  /** Aplica monticuloMax al subárbol reducido. */
     }
   }
 
+  /**
+   * @brief Algoritmo de ordenamiento rápido.
+   * 
+   * @param A Arreglo a ordenar.
+   * @param n Tamaño del arreglo.
+   */
   void ordenamientoRapido(int *A, int n) const {
-    quickRec(A, 0, n - 1);  /** Llama a la función quickRec sobre todo el arreglo. */
+    if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
+
+    rapidoRec(A, 0, n - 1);  /** Llama a la función rapidoRec sobre todo el arreglo. */
   }
 
+  /**
+   * @brief Algoritmo de ordenamiento por residuos en base 2^lg(n).
+   * 
+   * @param A Arreglo a ordenar.
+   * @param n Tamaño del arreglo.
+   */
   void ordenamientoPorRadix(int *A, int n) const {
-    int max = obtenerMax(A, n);  /** Encuentra el valor máximo para saber el número de dígitos. */
+    if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
 
-    /** Calcular la base como 2^(log2(n)). */
-    int base = pow(2, floor(log2(n)));
+    /** Calcular el número de bits por cada dígito (lgn). */
+    int bitsPorDigito = calcularLog(n);  /** Base 2^lg(n). */
+    int totalBits = sizeof(int) * 8;  /** Número de bits en un entero. */
 
-    /** Aplicar Counting Sort para cada dígito. Exp es la potencia de la base. */
-    for (int exp = 1; max / exp > 0; exp *= base) {
-      countingSort(A, n, exp, base);
+    /** Crear un buffer para el ordenamiento temporal. */
+    int* memIntermedia = new int[n];
+
+    /** Máscara para extraer los bits correspondientes a un dígito. */
+    int mascara = (1 << bitsPorDigito) - 1;
+
+    for (int bitPos = 0; bitPos < totalBits; bitPos += bitsPorDigito) {
+      int count[1 << bitsPorDigito];
+      for (int i = 0; i < (1 << bitsPorDigito); ++i) {
+        count[i] = 0;
+      }
+
+      /** Contar las ocurrencias de cada dígito. */
+      for (int i = 0; i < n; ++i) {
+        int digito = obtenerValorDigito(A[i], bitPos, mascara);
+        count[digito]++;
+      }
+
+      /** Calcular posiciones acumulativas. */
+      for (int i = 1; i < (1 << bitsPorDigito); ++i) {
+        count[i] += count[i - 1];
+      }
+
+      /** Construir el arreglo ordenado temporalmente usando el buffer. */
+      for (int i = n - 1; i >= 0; --i) {
+        int digito = obtenerValorDigito(A[i], bitPos, mascara);
+        memIntermedia[--count[digito]] = A[i];
+      }
+
+      /** Copiar el contenido del buffer en el arreglo original. */
+      for (int i = 0; i < n; ++i) {
+        A[i] = memIntermedia[i];
+      }
     }
+    /** Liberar la memoria utilizada por el buffer. */
+    delete[] memIntermedia;
   }
 
   /**
