@@ -1,5 +1,12 @@
+// Copyright 2024 Josué Torres Sibaja <josue.torressibaja@ucr.ac.cr>
+
+#include <chrono>
 #include <cmath>
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
+#include <limits.h>
+#include <utility>
 #include <vector>
 using namespace std;
 
@@ -18,14 +25,15 @@ using namespace std;
  * compilación y ejecución.
  */
 class Ordenador {
-  private:
+ private:
   /**
-   * @brief Obtiene el valor de un dígito específico a partir de un conjunto de bits.
+   * @brief Obtiene el valor de un dígito específico a partir de un conjunto de
+   * bits.
    * 
-   * @param num El número del que se extraerá el dígito.
-   * @param bitPos La posición de inicio de los bits que se desean extraer.
-   * @param mascara La máscara utilizada para extraer los bits correspondientes.
-   * @return El valor del dígito extraído.
+   * @param num Número del que se extraerá el dígito.
+   * @param bitPos Posición de inicio de los bits que se desean extraer.
+   * @param mascara Máscara utilizada para extraer los bits correspondientes.
+   * @return Valor del dígito extraído.
    */
   int obtenerValorDigito(int num, int bitPos, int mascara) const {
     return (num >> bitPos) & mascara;
@@ -68,6 +76,9 @@ class Ordenador {
    * @param r Índice final del subarreglo.
    */
   void rapidoRec(int *A, int p, int r) const {
+    /** Caso de arreglo de un elemento o rango incorrecto. */
+    if (p >= r) return;
+
     if (p < r) {
       int q = particionar(A, p, r);  /** Particionar el arreglo. */
       rapidoRec(A, p, q - 1);  /** Ordenar recursivamente el lado bajo. */
@@ -121,22 +132,26 @@ class Ordenador {
    * @param i Índice de la raíz del subárbol que se va a "monticulizar".
    */
   void monticuloMax(int *A, int tamMonticulo, int i) const {
-    int i = izquierdo(i);
-    int d = derecho(i);
+    int izq = izquierdo(i);
+    int der = derecho(i);
     int nodo = i;
 
     /** Si el hijo izquierdo es mayor que el nodo actual. */
-    if (i < tamMonticulo && A[i] > A[nodo])
-      nodo = i;
+    if (izq < tamMonticulo && A[izq] > A[nodo])
+      nodo = izq;
 
-    /** Si el hijo derecho es mayor que el nodo más grande encontrado hasta ahora. */
-    if (d < tamMonticulo && A[d] > A[nodo])
-      nodo = d;
+    /**
+     * Si el hijo derecho es mayor que el nodo más grande encontrado hasta
+     * ahora.
+     */
+    if (der < tamMonticulo && A[der] > A[nodo])
+      nodo = der;
 
     /** Si el nodo más grande no es el nodo actual. */
     if (nodo != i) {
       swap(A[i], A[nodo]);
-      monticuloMax(A, tamMonticulo, nodo);  /** Aplicar monticuloMax recursivamente. */
+      /** Aplicar monticuloMax recursivamente. */
+      monticuloMax(A, tamMonticulo, nodo);
     }
   }
 
@@ -148,14 +163,16 @@ class Ordenador {
   }
 
   /**
-   * @brief Función recursiva auxiliar para el algoritmo de ordenamiento por mezcla.
+   * @brief Función recursiva auxiliar para el algoritmo de ordenamiento por
+   * mezcla.
    * 
    * @param A Arreglo a ordenar.
    * @param p Índice de inicio del subarreglo.
    * @param r Índice final del subarreglo.
    */
   void mezclaRec(int *A, int p, int r) const {
-    if (p >= r) return;  /** Caso de arreglo de un elemento o rango incorrecto. */
+    /** Caso de arreglo de un elemento o rango incorrecto. */
+    if (p >= r) return;
 
     int q = (p + r) / 2;  /** Calcular el punto medio. */
     mezclaRec(A, p, q);  /** Ordenar la primera mitad. */
@@ -186,7 +203,10 @@ class Ordenador {
     for (int j = 0; j < nD; ++j) {
       D[j] = A[q + 1 + j];
     }
-    /** i: índice del subarreglo I. j: índice del subarreglo D. k: índice del arreglo original. */
+    /**
+     * i: índice del subarreglo I. j: índice del subarreglo D. k: índice del
+     * arreglo original.
+     */
     int i = 0, j = 0, k = p;
 
     /** Se mezclan los subarreglos I y D de regreso en A[p:r]. */
@@ -214,7 +234,7 @@ class Ordenador {
     }
   }
 
-  public:
+ public:
   Ordenador() = default;
   ~Ordenador() = default;
 
@@ -225,7 +245,8 @@ class Ordenador {
    * @param n Tamaño del arreglo.
    */
   void ordenamientoPorSeleccion(int *A, int n) const {
-    if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
+    /** Verificación defensiva de entrada. */
+    if (A == nullptr || n <= 0) return;
 
     for (int i = 0; i < n - 1; ++i) {
       int m = i;  /** m es el índice del elemento más pequeño. */
@@ -246,12 +267,15 @@ class Ordenador {
    * @param n Tamaño del arreglo.
    */
   void ordenamientoPorInsercion(int *A, int n) const {
-    if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
+    /** Verificación defensiva de entrada. */
+    if (A == nullptr || n <= 0) return;
 
     for (int i = 1; i < n; ++i) {
       int valorClave = A[i];  /** Se guarda el elemento actual. */
       int j = i - 1;
-      /** Se mueven los elementos mayores que valorClave una posición adelante. */
+      /**
+       * Se mueven los elementos mayores que valorClave una posición adelante.
+       */
       while (j >= 0 && A[j] > valorClave) {
         A[j + 1] = A[j];
         --j;
@@ -268,7 +292,8 @@ class Ordenador {
    * @param n Tamaño del arreglo.
    */
   void ordenamientoPorMezcla(int *A, int n) const {
-    if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
+    /** Verificación defensiva de entrada. */
+    if (A == nullptr || n <= 0) return;
 
     /** Llamado a la función recursiva para ordenar el arreglo completo. */
     mezclaRec(A, 0, n - 1);
@@ -281,7 +306,8 @@ class Ordenador {
    * @param n Tamaño del arreglo.
    */
   void ordenamientoPorMonticulos(int *A, int n) const {
-    if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
+    /** Verificación defensiva de entrada. */
+    if (A == nullptr || n <= 0) return;
 
     monticulizar(A, n);  /** Construye el max-heap. */
 
@@ -298,9 +324,11 @@ class Ordenador {
    * @param n Tamaño del arreglo.
    */
   void ordenamientoRapido(int *A, int n) const {
-    if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
+    /** Verificación defensiva de entrada. */
+    if (A == nullptr || n <= 0) return;
 
-    rapidoRec(A, 0, n - 1);  /** Llama a la función rapidoRec sobre todo el arreglo. */
+    /** Llama a la función recursiva sobre todo el arreglo. */
+    rapidoRec(A, 0, n - 1);
   }
 
   /**
@@ -310,7 +338,8 @@ class Ordenador {
    * @param n Tamaño del arreglo.
    */
   void ordenamientoPorRadix(int *A, int n) const {
-    if (A == nullptr || n <= 0) return;  /** Verificación defensiva de entrada. */
+    /** Verificación defensiva de entrada. */
+    if (A == nullptr || n <= 0) return;
 
     /** Calcular el número de bits por cada dígito (lgn). */
     int bitsPorDigito = calcularLog(n);  /** Base 2^lg(n). */
@@ -357,7 +386,8 @@ class Ordenador {
   /**
    * @brief Retorna un string con los datos de la tarea.
    * 
-   * @details Este método devuelve una cadena de texto que contiene el carné, nombre y tarea.
+   * @details Este método devuelve una cadena de texto que contiene el carné,
+   * nombre y entrega de la tarea.
    * @return string Una cadena de texto con los datos de la tarea.
    */
   constexpr const char* datosDeTarea() const {
