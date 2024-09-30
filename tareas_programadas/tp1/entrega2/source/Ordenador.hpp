@@ -17,8 +17,8 @@ using namespace std;
  * @brief Clase que implementa varios algoritmos de ordenamiento.
  * 
  * @details Esta clase incluye los métodos para ordenar arreglos de valores
- * utilizando los algoritmos de selección, inserción, mezcla, por montículos,
- * ordenamiento rápido y ordenamiento por residuos. Los métodos hacen uso de
+ * utilizando los Algoritmos de Ordenamiento por Selección, Inserción, Mezcla,
+ * Montículos, Ordenamiento Rápido y por Residuos. Los métodos hacen uso de
  * programación defensiva y están basados en el pseudocódigo provisto en el
  * libro de Cormen y colaboradores. La implementación de cada algoritmo se
  * realiza dentro del cuerpo de la clase para garantizar una correcta
@@ -386,7 +386,7 @@ class Ordenador {
   /**
    * @brief Retorna un string con los datos de la tarea.
    * 
-   * @details Este método devuelve una cadena de texto que contiene el carné,
+   * @details Este método devuelve una cadena de texto que contiene el carnet,
    * nombre y entrega de la tarea.
    * @return string Una cadena de texto con los datos de la tarea.
    */
