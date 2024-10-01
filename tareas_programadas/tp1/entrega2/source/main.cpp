@@ -8,7 +8,11 @@ vector<int> arregloAleatorio(int tam) {
   vector<int> arreglo(tam);
   for (int i = 0; i < tam; ++i) {
     /** Generar números positivos hasta el número máximo posible. */
-    arreglo[i] = rand() % INT_MAX + 1;
+    mt19937 generador(random_device{}());  /** Crear el generador. */
+    /** Definir el rango. */
+    uniform_int_distribution<uint32_t> distribucion(0, UINT32_MAX);
+    /** Asignar un valor aleatorio dentro del rango. */
+    arreglo[i] = distribucion(generador);
   }
   return arreglo;
 }
