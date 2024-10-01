@@ -6,11 +6,11 @@
 vector<int> arregloAleatorio(int tam) {
   srand(time(0));  /** Semilla para los números aleatorios. */
   vector<int> arreglo(tam);
+  /** Crear el generador. */
+  mt19937 generador(random_device{}());
+  /** Definir el rango. */
+  uniform_int_distribution<uint32_t> distribucion(0, UINT32_MAX);
   for (int i = 0; i < tam; ++i) {
-    /** Generar números positivos hasta el número máximo posible. */
-    mt19937 generador(random_device{}());  /** Crear el generador. */
-    /** Definir el rango. */
-    uniform_int_distribution<uint32_t> distribucion(0, UINT32_MAX);
     /** Asignar un valor aleatorio dentro del rango. */
     arreglo[i] = distribucion(generador);
   }
