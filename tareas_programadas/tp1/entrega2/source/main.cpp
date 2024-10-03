@@ -3,15 +3,15 @@
 #include "Ordenador.hpp"
 
 /** Función para generar un arreglo de enteros positivos. */
-vector<int> arregloAleatorio(int tam) {
-  srand(time(0));  /** Semilla para los números aleatorios. */
+vector<int> arregloAleatorio(int tam, uint32_t semilla) {
+  /** Semilla fija para los números aleatorios. */
+  mt19937 generador(semilla);
+  /** Crear el arreglo. */
   vector<int> arreglo(tam);
-  /** Crear el generador. */
-  mt19937 generador(random_device{}());
-  /** Definir el rango. */
+  /** Definir el rango de números aleatorios. */
   uniform_int_distribution<uint32_t> distribucion(0, UINT32_MAX);
+  /** Llenar el arreglo con números aleatorios. */
   for (int i = 0; i < tam; ++i) {
-    /** Asignar un valor aleatorio dentro del rango. */
     arreglo[i] = distribucion(generador);
   }
   return arreglo;
@@ -39,7 +39,8 @@ int main() {
     "Monticulos", "Rapido", "Residuos"};
   cout << "Tiempos de ejecucion\n";
   cout << "\n";
-
+  /** Usar una semilla fija para generar los números aleatorios. */
+  const uint32_t semilla = 123456;
   for (int i = 0; i < (end(algoritmos)-begin(algoritmos)); i++) {
     if (i == 1) {
       cout << "----- Ordenamiento " << algoritmos[i] << " -----\n";
@@ -50,8 +51,8 @@ int main() {
     /** Probar con cada tamaño de arreglo. */
     for (int tam : tams) {
       vector<double> tiempos;
-      /** Generar un solo arreglo aleatorio para todas las ejecuciones. */
-      vector<int> arreglo = arregloAleatorio(tam);
+      /** Generar el arreglo con la semilla y el tamaño especificado. */
+      vector<int> arreglo = arregloAleatorio(tam, semilla);
 
       /** Ejecutar el algoritmo 3 veces con el mismo arreglo. */
       for (int j = 0; j < 3; j++) {
