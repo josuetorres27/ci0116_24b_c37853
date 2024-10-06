@@ -4,11 +4,11 @@
 Josué Torres Sibaja, C37853
 
 ### Descripción
-En esta entrega se presenta una implementación en C++ de los algoritmos de Selección, Inserción y Mezcla. Para esto, se entrega el archivo 'Ordenador.hpp', facilitado por el profesor, modificado con las implementaciones de los algoritmos y el método 'datosDeTarea()' correctamente configurado.
+En esta entrega se presenta una implementación en C++ del Algoritmo de Ordenamiento por Selección, el Algoritmo de Ordenamiento por Inserción, el Algoritmo de Ordenamiento por Mezcla, el Algoritmo de Ordenamiento por Montículos, el Algoritmo de Ordenamiento Rápido y el Algoritmo de Ordenamiento por Residuos. Para esto, se entrega el archivo 'Ordenador.hpp', facilitado por el profesor, modificado con las implementaciones de los algoritmos y el método 'datosDeTarea()' correctamente configurado.
 
 Así mismo, se entrega un archivo 'main.cpp' que contiene el código con el que se ejecutaron los algoritmos para completar las demás partes de la tarea, el cual puede ser utilizado para ejecutar los algoritmos nuevamente si se desea.
 
-De la misma forma, se entrega el reporte solicitado con el formato pertinente, el cual contiene el cuadro con los tiempos de los algoritmos y sus promedios, los gráficos de líneas de cada uno de los algoritmos y el gráfico que contiene los tres algoritmos (gráfico de comparación).
+De la misma forma, se entrega el reporte solicitado con el formato pertinente, el cual contiene el cuadro con los tiempos de los algoritmos y sus promedios, los gráficos de líneas de cada uno de los algoritmos y los gráficos comparativos para varios algoritmos.
 
 ### Instrucciones de uso
 Como se solicitó en las instrucciones, el código se puede compilar sencillamente con g++, de la siguiente forma (se asume que el compilador ya está instalado y que se utilizará el archivo 'main.cpp'):
