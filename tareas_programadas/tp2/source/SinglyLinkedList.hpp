@@ -1,54 +1,108 @@
 /*
- Credits
- Based on: Prof. Arturo Camacho, Universidad de Costa Rica
+ * Credits
+ * Based on: Prof. Arturo Camacho, Universidad de Costa Rica
+ * Template provided by: Prof. Allan Berrocal Rojas
+ * Adapted by: Josué Torres Sibaja <josue.torressibaja@ucr.ac.cr>
  */
 
 #pragma once
+#include <iostream>
+
 template <typename DataType>
 class SLList;
 
+/**
+ * @brief Node class for singly linked list with sentinel.
+ * 
+ * @tparam DataType Type of data stored in the node.
+ */
 template <typename DataType>
 class SLListNode {
  public:
   friend class SLList<DataType>;
 
-  SLListNode();
+  /** Default constructor. */
+  SLListNode() : key(DataType()), next(nullptr) {}
 
-  SLListNode(const DataType& value, SLListNode<DataType>* next = nullptr);
+  /** Constructor with value and pointer. */
+  SLListNode(const DataType &value, SLListNode<DataType> *next = nullptr)
+    : key(value), next(next) {}
 
-  ~SLListNode();
+  /** Destructor. */
+  ~SLListNode() {}
 
-  DataType getKey() const;
-
-  SLListNode<DataType>* getNext() const;
-
-  void setKey(DataType key);
-
-  void setNext(SLListNode<DataType>*);
+  /** Access and modification functions. */
+  DataType getKey() const { return key; }
+  SLListNode<DataType> *getNext() const { return next; }
+  void setKey(DataType key) { this->key = key; }
+  void setNext(SLListNode<DataType> *next) { this->next = next; }
 
  private:
   DataType key;
-
-  SLListNode<DataType>* next;
+  SLListNode<DataType> *next;
 };
 
+/**
+ * @brief Singly linked list with a sentinel node.
+ * 
+ * @tparam DataType Type of data stored in the list.
+ */
 template <typename DataType>
 class SLList {
  public:
-  SLList() = default;
+  /** Constructor. */
+  SLList() {
+    nil = new SLListNode<DataType>();  /** Sentinel node. */
+    nil->setNext(nil);  /** Initialize itself. */
+  }
 
-  ~SLList() {};
+  /** Destructor. */
+  ~SLList() {
+    SLListNode<DataType> *current = nil->getNext();
+    while (current != nil) {
+      SLListNode<DataType> *temp = current;
+      current = current->getNext();
+      delete temp;
+    }
+    delete nil;
+  }
 
-  void insert(const DataType& value);
+  /** Insertion function. */
+  void insert(const DataType &value) {
+    SLListNode<DataType> *newNode =
+      new SLListNode<DataType>(value, nil->getNext());
+    nil->setNext(newNode);
+  }
 
-  SLListNode<DataType>* search(const DataType& value) const;
+  /** Search function (returns first occurrence). */
+  SLListNode<DataType> *search(const DataType &value) const {
+    SLListNode<DataType> *current = nil->getNext();
+    while (current != nil) {
+      if (current->getKey() == value) {
+        return current;
+      }
+      current = current->getNext();
+    }
+    return nullptr;  /** Not found. */
+  }
 
-  void remove(const DataType& value);
+  /** Deletion function (deletes all occurrences). */
+  void remove(const DataType &value) {
+    SLListNode<DataType> *current = nil;
+    while (current->getNext() != nil) {
+      if (current->getNext()->getKey() == value) {
+        SLListNode<DataType> *temp = current->getNext();
+        current->setNext(temp->getNext());
+        delete temp;
+      } else {
+        current = current->getNext();
+      }
+    }
+  }
 
-  void remove(SLListNode<DataType>* node);
+  /** Returns sentinel node. */
+  SLListNode<DataType> *getNil() const { return nil; }
 
-  SLListNode<DataType>* getNil() const;
-  
  private:
-  SLListNode<DataType>* nil;
+  SLListNode<DataType> *nil;
 };
