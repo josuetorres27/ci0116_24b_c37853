@@ -12,9 +12,9 @@ template <typename DataType>
 class BSTree;
 
 /**
- * @brief A node class for a Binary Search Tree (BST), supporting basic node
+ * @brief Node class for a Binary Search Tree, supporting basic node
  * properties and links to parent and child nodes.
- * 
+ *
  * @tparam DataType Type of data stored in the node.
  */
 template <typename DataType>
@@ -62,9 +62,9 @@ class BSTreeNode {
 };
 
 /**
- * @brief A Binary Search Tree (BST) class supporting basic operations such as
- * insertion, searching, deletion, and traversal.
- * 
+ * @brief Binary Search Tree class supporting basic operations such as
+ * insertion, searching, deletion and traversal.
+ *
  * @tparam DataType Type of data stored in the tree.
  */
 template <typename DataType>
@@ -74,7 +74,13 @@ class BSTree {
   BSTree() : root(nullptr) {}
 
   /** Destructor. */
-  ~BSTree() { clear(root); }
+  ~BSTree() { clear(); }
+
+  /** Function to clear all nodes from the tree. */
+  void clear() {
+    clear(root);
+    root = nullptr;
+  }
 
   /** Insertion function. */
   void insert(const DataType &value) {
@@ -191,11 +197,11 @@ class BSTree {
  private:
   BSTreeNode<DataType> *root;
 
-  /** Auxiliar function to delete a subtree. */
+  /** Recursive function to clear all nodes from the tree. */
   void clear(BSTreeNode<DataType> *node) {
     if (node != nullptr) {
-      clear(node->getLeft());
-      clear(node->getRight());
+      clear(node->left);
+      clear(node->right);
       delete node;
     }
   }

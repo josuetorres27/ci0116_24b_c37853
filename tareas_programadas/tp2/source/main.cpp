@@ -3,86 +3,123 @@
 #include <chrono>
 #include <iostream>
 #include <random>
+#include <string>
 
-#include "BinarySearchTree.hpp"
-#include "ChainedHashTable.hpp"
-#include "RedBlackTree.hpp"
 #include "SinglyLinkedList.hpp"
+#include "BinarySearchTree.hpp"
+#include "RedBlackTree.hpp"
+#include "ChainedHashTable.hpp"
 
+/** Function to handle insertion in any structure. */
 template <typename Structure>
-void measureInsertion(Structure& structure, int n, std::mt19937& rng, std::uniform_int_distribution<int>& dist, bool ordered) {
-    auto start = std::chrono::high_resolution_clock::now();
-
-    if (ordered) {
-        // Inserción ordenada
-        if constexpr (std::is_same_v<Structure, BSTree<int>>) {
-            structure.fastInsert(0, n - 1);
-            std::cout << "Tiempo de inserción ordenada en árbol binario (con fastInsert): ";
-        } else {
-            for (int i = 0; i < n; ++i) {
-                structure.insert(i);
-            }
-            std::cout << "Tiempo de inserción ordenada en lista enlazada: ";
-        }
+void measureInsertion(Structure& structure, int n, std::mt19937& rng,
+  std::uniform_int_distribution<int>& dist, bool ordered) {
+  auto start = std::chrono::high_resolution_clock::now();
+  if (ordered) {
+    /** Ordered insertion. */
+    if constexpr (std::is_same_v<Structure, BSTree<int>>) {
+      structure.fastInsert(0, n - 1);
+      std::cout << "Insertion time (ordered) in Binary Search Tree "
+        "(fastInsert): ";
+    } else if constexpr (std::is_same_v<Structure, RBTree<int>>) {
+      for (int i = 0; i < n; ++i) {
+        structure.insert(i);
+      }
+      std::cout << "Insertion time (ordered) in Red-Black Tree: ";
+    } else if constexpr (std::is_same_v<Structure, ChainedHashTable<int>>) {
+      for (int i = 0; i < n; ++i) {
+        structure.insert(i);
+      }
+      std::cout << "Insertion time (ordered) in Hash Table: ";
     } else {
-        // Inserción aleatoria
-        for (int i = 0; i < n; ++i) {
-            int value = dist(rng);
-            structure.insert(value);
-        }
-        if constexpr (std::is_same_v<Structure, BSTree<int>>) {
-            std::cout << "Tiempo de inserción aleatoria en árbol binario: ";
-        } else {
-            std::cout << "Tiempo de inserción aleatoria en lista enlazada: ";
-        }
+      for (int i = 0; i < n; ++i) {
+        structure.insert(i);
+      }
+      std::cout << "Insertion time (ordered) in Singly Linked List: ";
     }
-
-    auto end = std::chrono::high_resolution_clock::now();
-    std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
-              << " ms\n";
+  } else {
+    /** Random insertion. */
+    for (int i = 0; i < n; ++i) {
+      int value = dist(rng);
+      structure.insert(value);
+    }
+    if constexpr (std::is_same_v<Structure, BSTree<int>>) {
+      std::cout << "Insertion time (random) in Binary Search Tree: ";
+    } else if constexpr (std::is_same_v<Structure, RBTree<int>>) {
+      std::cout << "Insertion time (random) in Red-Black Tree: ";
+    } else if constexpr (std::is_same_v<Structure, ChainedHashTable<int>>) {
+      std::cout << "Insertion time (random) in Hash Table: ";
+    } else {
+      std::cout << "Insertion time (random) in Singly Linked List: ";
+    }
+  }
+  auto end = std::chrono::high_resolution_clock::now();
+  std::cout
+    << std::chrono::duration_cast<std::chrono::milliseconds>
+      (end - start).count() << " ms\n";
 }
 
+/** Function to handle search in any structure. */
 template <typename Structure>
-void measureSearch(Structure& structure, int e, std::mt19937& rng, std::uniform_int_distribution<int>& dist, bool ordered) {
-    auto start = std::chrono::high_resolution_clock::now();
-
-    for (int i = 0; i < e; ++i) {
-        int value = dist(rng);
-        
-        if constexpr (std::is_same_v<Structure, BSTree<int>>) {
-            structure.search(structure.getRoot(), value);
-        } else {
-            structure.search(value);
-        }
-    }
-
-    auto end = std::chrono::high_resolution_clock::now();
-    if constexpr (std::is_same_v<Structure, BSTree<int>>) {
-        std::cout << "Tiempo de búsqueda " << (ordered ? "ordenada" : "aleatoria") << " en árbol binario: ";
+void measureSearch(Structure& structure, int e, std::mt19937& rng,
+  std::uniform_int_distribution<int>& dist, bool ordered) {
+  auto start = std::chrono::high_resolution_clock::now();
+  for (int i = 0; i < e; ++i) {
+    int value = dist(rng);
+    if constexpr (std::is_same_v<Structure, BSTree<int>> ||
+      std::is_same_v<Structure, RBTree<int>>) {
+      structure.search(structure.getRoot(), value);
+    } else if constexpr (std::is_same_v<Structure, ChainedHashTable<int>>) {
+      structure.search(value);
     } else {
-        std::cout << "Tiempo de búsqueda " << (ordered ? "ordenada" : "aleatoria") << " en lista enlazada: ";
+      structure.search(value);
     }
-    std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
-              << " ms\n";
+  }
+  auto end = std::chrono::high_resolution_clock::now();
+  if constexpr (std::is_same_v<Structure, BSTree<int>>) {
+    std::cout << "Search time " << (ordered ? "(ordered)" : "(random)")
+      << " in Binary Search Tree: ";
+  } else if constexpr (std::is_same_v<Structure, RBTree<int>>) {
+    std::cout << "Search time " << (ordered ? "(ordered)" : "(random)")
+      << " in Red-Black Tree: ";
+  } else if constexpr (std::is_same_v<Structure, ChainedHashTable<int>>) {
+    std::cout << "Search time " << (ordered ? "(ordered)" : "(random)")
+      << " in Hash Table: ";
+  } else {
+    std::cout << "Search time " << (ordered ? "(ordered)" : "(random)")
+      << " in Singly Linked List: ";
+  }
+  std::cout
+    << std::chrono::duration_cast<std::chrono::milliseconds>
+      (end - start).count() << " ms\n";
 }
 
+/** Function to handle deletion in any structure. */
 template <typename Structure>
-void measureDeletion(Structure& structure, int e, std::mt19937& rng, std::uniform_int_distribution<int>& dist, bool ordered) {
-    auto start = std::chrono::high_resolution_clock::now();
-
-    for (int i = 0; i < e; ++i) {
-        int value = dist(rng);
-        structure.remove(value);
-    }
-
-    auto end = std::chrono::high_resolution_clock::now();
-    if constexpr (std::is_same_v<Structure, BSTree<int>>) {
-        std::cout << "Tiempo de eliminación " << (ordered ? "ordenada" : "aleatoria") << " en árbol binario: ";
-    } else {
-        std::cout << "Tiempo de eliminación " << (ordered ? "ordenada" : "aleatoria") << " en lista enlazada: ";
-    }
-    std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
-              << " ms\n";
+void measureDeletion(Structure& structure, int e, std::mt19937& rng,
+  std::uniform_int_distribution<int>& dist, bool ordered) {
+  auto start = std::chrono::high_resolution_clock::now();
+  for (int i = 0; i < e; ++i) {
+    int value = dist(rng);
+    structure.remove(value);
+  }
+  auto end = std::chrono::high_resolution_clock::now();
+  if constexpr (std::is_same_v<Structure, BSTree<int>>) {
+    std::cout << "Deletion time " << (ordered ? "(ordered)" : "(random)")
+      << " in Binary Search Tree: ";
+  } else if constexpr (std::is_same_v<Structure, RBTree<int>>) {
+    std::cout << "Deletion time " << (ordered ? "(ordered)" : "(random)")
+      << " in Red-Black Tree: ";
+  } else if constexpr (std::is_same_v<Structure, ChainedHashTable<int>>) {
+    std::cout << "Deletion time " << (ordered ? "(ordered)" : "(random)")
+      << " in Hash Table: ";
+  } else {
+    std::cout << "Deletion time " << (ordered ? "(ordered)" : "(random)")
+      << " in Singly Linked List: ";
+  }
+  std::cout
+    << std::chrono::duration_cast<std::chrono::milliseconds>
+      (end - start).count() << " ms\n";
 }
 
 int main() {
@@ -92,7 +129,7 @@ int main() {
   /** Nodes to search and delete. */
   constexpr int e = 10'000;
 
-  /** Size of the hash table (m), with a load factor of α = 1 (m = n). */
+  /** Size of the Hash Table (m), with a load factor of α = 1 (m = n). */
   size_t m = n;
 
   /** Random numbers generator. */
@@ -100,35 +137,35 @@ int main() {
   std::mt19937 rng(rd());
   std::uniform_int_distribution<int> dist(0, 3 * n - 1);
 
-  /** --- Singly linked list --- */
+  /** ----- Singly Linked List ----- */
 
-  /** Create a singly linked list. */
-  SLList<int> list;
+  /** Create a Singly Linked List. */
+  SLList<int> sllist;
 
   /** 5.1.1. Random insertion. */
-  measureInsertion(list, n, rng, dist, false);
+  measureInsertion(sllist, n, rng, dist, false);
 
   /** 5.1.1. Random search. */
-  measureSearch(list, e, rng, dist, false);
+  measureSearch(sllist, e, rng, dist, false);
 
   /** 5.1.1. Random deletion. */
-  measureDeletion(list, e, rng, dist, false);
+  measureDeletion(sllist, e, rng, dist, false);
 
-  /** Clear list. */
-  list = SLList<int>();
+  /** Clear Singly Linked List. */
+  sllist.clear();
 
   /** 5.1.2. Ordered insertion. */
-  measureInsertion(list, n, rng, dist, true);
+  measureInsertion(sllist, n, rng, dist, true);
 
   /** 5.1.2. Ordered search. */
-  measureSearch(list, e, rng, dist, true);
+  measureSearch(sllist, e, rng, dist, true);
 
   /** 5.1.2. Ordered deletion. */
-  measureDeletion(list, e, rng, dist, true);
+  measureDeletion(sllist, e, rng, dist, true);
 
-  /** --- Binary search tree --- */
+  /** ----- Binary Search Tree ----- */
 
-  /** Create a binary search tree. */
+  /** Create Binary Search Tree. */
   BSTree<int> bst;
 
   /** 5.1.1. Random insertion. */
@@ -140,8 +177,8 @@ int main() {
   /** 5.1.1. Random deletion. */
   measureDeletion(bst, e, rng, dist, false);
 
-  /** Clear tree. */
-  bst = BSTree<int>();
+  /** Clear Binary Search Tree. */
+  bst.clear();
 
   /** 5.1.2. Ordered insertion. */
   measureInsertion(bst, n, rng, dist, true);
@@ -151,6 +188,58 @@ int main() {
 
   /** 5.1.2. Ordered deletion. */
   measureDeletion(bst, e, rng, dist, true);
+
+  /** ----- Red-Black Tree ----- */
+
+  /** Create Red-Black Tree. */
+  RBTree<int> rbt;
+
+  /** 5.1.2. Ordered insertion. */
+  measureInsertion(rbt, n, rng, dist, true);
+
+  /** 5.1.2. Ordered search. */
+  measureSearch(rbt, e, rng, dist, true);
+
+  /** 5.1.2. Ordered deletion. */
+  measureDeletion(rbt, e, rng, dist, true);
+
+  /** Clear Red-Black Tree. */
+  rbt.clear();
+
+  /** 5.1.2. Ordered insertion. */
+  measureInsertion(rbt, n, rng, dist, true);
+
+  /** 5.1.2. Ordered search. */
+  measureSearch(rbt, e, rng, dist, true);
+
+  /** 5.1.2. Ordered deletion. */
+  measureDeletion(rbt, e, rng, dist, true);
+
+  /** ----- Hash Table ----- */
+
+  /** Create Hash Table. */
+  ChainedHashTable<int> ht(m);
+
+  /** 5.1.2. Ordered insertion. */
+  measureInsertion(ht, n, rng, dist, true);
+
+  /** 5.1.2. Ordered search. */
+  measureSearch(ht, e, rng, dist, true);
+
+  /** 5.1.2. Ordered deletion. */
+  measureDeletion(ht, e, rng, dist, true);
+
+  /** Clear Hash Table. */
+  ht.clear();
+
+  /** 5.1.2. Ordered insertion. */
+  measureInsertion(ht, n, rng, dist, true);
+
+  /** 5.1.2. Ordered search. */
+  measureSearch(ht, e, rng, dist, true);
+
+  /** 5.1.2. Ordered deletion. */
+  measureDeletion(ht, e, rng, dist, true);
 
   return 0;
 }

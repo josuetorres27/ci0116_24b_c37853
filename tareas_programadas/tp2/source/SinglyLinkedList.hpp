@@ -13,7 +13,7 @@ class SLList;
 
 /**
  * @brief Node class for singly linked list with sentinel.
- * 
+ *
  * @tparam DataType Type of data stored in the node.
  */
 template <typename DataType>
@@ -44,7 +44,7 @@ class SLListNode {
 
 /**
  * @brief Singly linked list with a sentinel node.
- * 
+ *
  * @tparam DataType Type of data stored in the list.
  */
 template <typename DataType>
@@ -58,13 +58,19 @@ class SLList {
 
   /** Destructor. */
   ~SLList() {
+    clear();
+    delete nil;  /** Frees sentinel after clearing the list. */
+  }
+
+  /** Function to clear all nodes from the list. */
+  void clear() {
     SLListNode<DataType> *current = nil->getNext();
     while (current != nil) {
-      SLListNode<DataType> *temp = current;
+      SLListNode<DataType> *toDelete = current;
       current = current->getNext();
-      delete temp;
+      delete toDelete;
     }
-    delete nil;
+    nil->setNext(nil);
   }
 
   /** Insertion function. */
