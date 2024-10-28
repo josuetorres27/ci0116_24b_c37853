@@ -87,7 +87,6 @@ class BSTree {
     BSTreeNode<DataType> *newNode = new BSTreeNode<DataType>(value);
     BSTreeNode<DataType> *y = nullptr;
     BSTreeNode<DataType> *x = root;
-
     while (x != nullptr) {
       y = x;
       if (value < x->getKey()) {
@@ -96,9 +95,7 @@ class BSTree {
         x = x->getRight();
       }
     }
-
     newNode->setParent(y);
-
     if (y == nullptr) {
       root = newNode;
     } else if (value < y->getKey()) {
@@ -163,7 +160,6 @@ class BSTree {
   void remove(const DataType &value) {
     BSTreeNode<DataType> *node = search(root, value);
     if (node == nullptr) return;
-
     if (node->getLeft() == nullptr) {
       transplant(node, node->getRight());
     } else if (node->getRight() == nullptr) {
@@ -182,7 +178,7 @@ class BSTree {
     delete node;
   }
 
-  /** Obtain tree's root. */
+  /** Returns root node. */
   BSTreeNode<DataType> *getRoot() const { return root; }
 
   /** Function for fast insertion of an ordered sequence of keys. */
@@ -206,7 +202,7 @@ class BSTree {
     }
   }
 
-  /** Auxiliar function for deleting. */
+  /** Auxiliary function for deleting. */
   void transplant(BSTreeNode<DataType> *u, BSTreeNode<DataType> *v) {
     if (u->getParent() == nullptr) {
       root = v;

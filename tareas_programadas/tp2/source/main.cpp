@@ -195,13 +195,13 @@ int main() {
   RBTree<int> rbt;
 
   /** 5.1.2. Ordered insertion. */
-  measureInsertion(rbt, n, rng, dist, true);
+  measureInsertion(rbt, n, rng, dist, false);
 
   /** 5.1.2. Ordered search. */
-  measureSearch(rbt, e, rng, dist, true);
+  measureSearch(rbt, e, rng, dist, false);
 
   /** 5.1.2. Ordered deletion. */
-  measureDeletion(rbt, e, rng, dist, true);
+  measureDeletion(rbt, e, rng, dist, false);
 
   /** Clear Red-Black Tree. */
   rbt.clear();
@@ -221,13 +221,13 @@ int main() {
   ChainedHashTable<int> ht(m);
 
   /** 5.1.2. Ordered insertion. */
-  measureInsertion(ht, n, rng, dist, true);
+  measureInsertion(ht, n, rng, dist, false);
 
   /** 5.1.2. Ordered search. */
-  measureSearch(ht, e, rng, dist, true);
+  measureSearch(ht, e, rng, dist, false);
 
   /** 5.1.2. Ordered deletion. */
-  measureDeletion(ht, e, rng, dist, true);
+  measureDeletion(ht, e, rng, dist, false);
 
   /** Clear Hash Table. */
   ht.clear();
