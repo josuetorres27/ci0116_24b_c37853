@@ -1,7 +1,6 @@
 // Copyright 2024 Josué Torres Sibaja <josue.torressibaja@ucr.ac.cr>
 
 #include <chrono>
-#include <iostream>
 #include <random>
 #include <string>
 
@@ -18,7 +17,7 @@ void measureInsertion(Structure& structure, int n, std::mt19937& rng,
   if (ordered) {
     /** Ordered insertion. */
     if constexpr (std::is_same_v<Structure, BSTree<int>>) {
-      structure.fastInsert(0, n - 1);
+      structure.fastInsert(n);
       std::cout << "Insertion time (ordered) in Binary Search Tree "
         "(fastInsert): ";
     } else if constexpr (std::is_same_v<Structure, RBTree<int>>) {
@@ -122,10 +121,10 @@ void measureDeletion(Structure& structure, int e, std::mt19937& rng,
 
 int main() {
   /** Nodes to insert. */
-  constexpr int n = 1'000'000;
+  constexpr int n = 1000;
 
   /** Nodes to search and delete. */
-  constexpr int e = 10'000;
+  constexpr int e = 100;
 
   /** Size of the Hash Table (m), with a load factor of α = 1 (m = n). */
   size_t m = n;

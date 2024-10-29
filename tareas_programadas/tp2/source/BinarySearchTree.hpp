@@ -7,6 +7,7 @@
 
 #pragma once
 #include <iostream>
+#include <stack>
 
 template <typename DataType>
 class BSTree;
@@ -91,13 +92,17 @@ class BSTree {
       y = x;
       if (value < x->getKey()) {
         x = x->getLeft();
-      } else {
+      } else if (value > x->getKey()) {
         x = x->getRight();
+      } else {
+        /** Duplicated value. */
+        delete newNode;
+        return;
       }
     }
     newNode->setParent(y);
     if (y == nullptr) {
-      root = newNode;
+      root = newNode;  /** The tree was empty. */
     } else if (value < y->getKey()) {
       y->setLeft(newNode);
     } else {
@@ -147,12 +152,19 @@ class BSTree {
     return parent;
   }
 
-  /** Inorder traversal. */
+  /** Inorder traversal (iterative). */
   void inorderWalk(BSTreeNode<DataType> *node) const {
-    if (node != nullptr) {
-      inorderWalk(node->getLeft());
-      std::cout << node->getKey() << " ";
-      inorderWalk(node->getRight());
+    std::stack<BSTreeNode<DataType> *> stack;
+    BSTreeNode<DataType> *current = node;
+    while (current != nullptr || !stack.empty()) {
+      while (current != nullptr) {
+        stack.push(current);
+        current = current->getLeft();
+      }
+      current = stack.top();
+      stack.pop();
+      std::cout << current->getKey() << " ";
+      current = current->getRight();
     }
   }
 
@@ -181,13 +193,31 @@ class BSTree {
   /** Returns root node. */
   BSTreeNode<DataType> *getRoot() const { return root; }
 
+  /**
+   * @note Why can inserting 𝑛 ordered keys into a binary search tree take too
+   * much time if 𝑛 is large?
+   * This is because inserting a sequence in sorted order (e.g., 0, 1, 2, ...,
+   * 𝑛 − 1) can result in an unbalanced tree, resembling a linked list. This
+   * configuration causes each insertion to require traversing most of the
+   * existing nodes, resulting in a time complexity of 𝑂(𝑛²) for all insertions
+   * combined. This inefficiency is due to the tree's height approaching 𝑛,
+   * which slows down operations as the tree becomes "skewed" rather than
+   * balanced.
+   *
+   * @note How can we avoid the long wait?
+   * To avoid the long wait, we can implement a fastInsert method that
+   * constructs a balanced BST directly. By recursively selecting the middle
+   * element of a given range (e.g., the middle of 0 to 𝑛 − 1) as the root, and
+   * then dividing the range to assign the left and right subtrees, we can
+   * efficiently create a balanced tree. This approach ensures that the tree's
+   * height remains 𝑂(log𝑛), resulting in an overall time complexity of 𝑂(𝑛)
+   * for the insertions, as each node is created and linked only once without
+   * additional traversal or rebalancing.
+   */
+
   /** Function for fast insertion of an ordered sequence of keys. */
-  void fastInsert(int start, int end) {
-    if (start > end) return;
-    int mid = start + (end - start) / 2;
-    insert(mid);  /** Insert element in the middle of the tree. */
-    fastInsert(start, mid - 1);  /** Insert left elements. */
-    fastInsert(mid + 1, end);  /** Insert rigth elements. */
+  void fastInsert(size_t n) {
+    root = buildBalancedTree(0, n - 1);
   }
 
  private:
@@ -200,6 +230,25 @@ class BSTree {
       clear(node->right);
       delete node;
     }
+  }
+
+  BSTreeNode<DataType>* buildBalancedTree(int start, int end) {
+    if (start > end) {
+      return nullptr;
+    }
+    /** Finds the mid value and creates a node for it. */
+    int mid = start + (end - start) / 2;
+    BSTreeNode<DataType>* node = new BSTreeNode<DataType>(mid);
+    /** Recursively builds the right and left subtrees. */
+    node->setLeft(buildBalancedTree(start, mid - 1));
+    if (node->getLeft()) {
+      node->getLeft()->setParent(node);
+    }
+    node->setRight(buildBalancedTree(mid + 1, end));
+    if (node->getRight()) {
+      node->getRight()->setParent(node);
+    }
+    return node;
   }
 
   /** Auxiliary function for deleting. */

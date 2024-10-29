@@ -87,6 +87,8 @@ class RBTree {
 
   /** Insertion function. */
   void insert(const DataType &value) {
+    /** Check if the value already exists to prevent duplicates. */
+    if (search(root, value) != nil) return;
     RBTreeNode<DataType> *node = new RBTreeNode<DataType>
       (value, nil, nil, nil, RED);
     RBTreeNode<DataType> *y = nil;

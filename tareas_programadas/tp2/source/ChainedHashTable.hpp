@@ -26,11 +26,13 @@ class ChainedHashTable {
     }
   }
 
-  /** Function to insert a value into the table. */
+  /** Function to insert a value into the table, avoiding duplicates. */
   void insert(const DataType &value) {
     size_t index = hash(value);
-    /** Inserts the value into the corresponding list. */
-    table[index].insert(value);
+    /** Check if the value is already in the list to avoid duplicates. */
+    if (table[index].search(value) == nullptr) {  /** Search for duplicates. */
+      table[index].insert(value);  /** Insert if not found. */
+    }
   }
 
   /** Function to search for a value in the table. */
@@ -50,7 +52,7 @@ class ChainedHashTable {
   /** Get the table size. */
   size_t getSize() const { return size; }
 
-  /** Set a new table size. */
+  /** Set a new table size and resize the underlying storage. */
   void setSize(size_t newSize) {
     size = newSize;
     table.resize(newSize);
