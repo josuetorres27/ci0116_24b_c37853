@@ -54,9 +54,8 @@ void measureInsertion(Structure& structure, int n, std::mt19937& rng,
     }
   }
   auto end = std::chrono::high_resolution_clock::now();
-  std::cout
-    << std::chrono::duration_cast<std::chrono::milliseconds>
-      (end - start).count() << " ms\n";
+  std::chrono::duration<double, std::milli> elapsed = end - start;
+  std::cout << elapsed.count() << " ms\n";
 }
 
 /** Function to handle search in any structure. */
@@ -89,9 +88,8 @@ void measureSearch(Structure& structure, int e, std::mt19937& rng,
     std::cout << "Search time " << (ordered ? "(ordered)" : "(random)")
       << " in Singly Linked List: ";
   }
-  std::cout
-    << std::chrono::duration_cast<std::chrono::milliseconds>
-      (end - start).count() << " ms\n";
+  std::chrono::duration<double, std::milli> elapsed = end - start;
+  std::cout << elapsed.count() << " ms\n";
 }
 
 /** Function to handle deletion in any structure. */
@@ -117,9 +115,9 @@ void measureDeletion(Structure& structure, int e, std::mt19937& rng,
     std::cout << "Deletion time " << (ordered ? "(ordered)" : "(random)")
       << " in Singly Linked List: ";
   }
-  std::cout
-    << std::chrono::duration_cast<std::chrono::milliseconds>
-      (end - start).count() << " ms\n";
+  std::chrono::duration<double, std::milli> elapsed = end - start;
+  std::cout << elapsed.count() << " ms\n";
+  std::cout << "\n";
 }
 
 int main() {

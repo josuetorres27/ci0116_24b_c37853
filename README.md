@@ -1,1 +1,5 @@
-# ci0116_24b_c37853
+# Análisis de Algoritmos y Estructuras de Datos
+### Profesor: Allan Berrocal Rojas
+### Grupo: 07
+### Estudiante: Josué Torres Sibaja
+### Carnet: C37853

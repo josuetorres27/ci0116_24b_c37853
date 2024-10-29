@@ -4,3 +4,4 @@ build
 doxygen
 *.docx
 Makefile
+*.ipynb
