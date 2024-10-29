@@ -121,10 +121,10 @@ void measureDeletion(Structure& structure, int e, std::mt19937& rng,
 
 int main() {
   /** Nodes to insert. */
-  constexpr int n = 1000;
+  constexpr int n = 1'000'000;
 
   /** Nodes to search and delete. */
-  constexpr int e = 100;
+  constexpr int e = 10'000;
 
   /** Size of the Hash Table (m), with a load factor of α = 1 (m = n). */
   size_t m = n;
