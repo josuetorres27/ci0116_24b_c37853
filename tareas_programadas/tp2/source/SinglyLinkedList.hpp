@@ -22,20 +22,36 @@ class SLListNode {
   friend class SLList<DataType>;
 
   /** Default constructor. */
-  SLListNode() : key(DataType()), next(nullptr) {}
+  SLListNode() {
+    key = DataType();
+    next = nullptr;
+  }
 
   /** Constructor with value and pointer. */
-  SLListNode(const DataType &value, SLListNode<DataType> *next = nullptr)
-    : key(value), next(next) {}
+  SLListNode(const DataType &value, SLListNode<DataType> *next = nullptr) {
+    key = value;
+    this->next = next;
+  }
 
   /** Destructor. */
   ~SLListNode() {}
 
   /** Access and modification functions. */
-  DataType getKey() const { return key; }
-  SLListNode<DataType> *getNext() const { return next; }
-  void setKey(DataType key) { this->key = key; }
-  void setNext(SLListNode<DataType> *next) { this->next = next; }
+  DataType getKey() const {
+    return key;
+  }
+
+  SLListNode<DataType> *getNext() const {
+    return next;
+  }
+
+  void setKey(DataType key) {
+    this->key = key;
+  }
+
+  void setNext(SLListNode<DataType> *next) {
+    this->next = next;
+  }
 
  private:
   DataType key;
@@ -107,7 +123,9 @@ class SLList {
   }
 
   /** Returns sentinel node. */
-  SLListNode<DataType> *getNil() const { return nil; }
+  SLListNode<DataType> *getNil() const {
+    return nil;
+  }
 
  private:
   SLListNode<DataType> *nil;

@@ -18,41 +18,67 @@ class RBTreeNode {
   friend class RBTree<DataType>;
 
   /** Default constructor. */
-  RBTreeNode() : key(DataType()), parent(nullptr), left(nullptr),
-    right(nullptr), color(colors::BLACK) {}
+  RBTreeNode() {
+    key = DataType();
+    parent = nullptr;
+    left = nullptr;
+    right = nullptr;
+    color = colors::BLACK;
+  }
 
   /** Constructor with values and pointers. */
-  RBTreeNode(const DataType &key, RBTreeNode<DataType> *parent = nullptr,
-    RBTreeNode<DataType> *left = nullptr, RBTreeNode<DataType>
-      *right = nullptr, colors color = colors::RED)
-        : key(key), parent(parent), left(left), right(right), color(color) {}
+  RBTreeNode(const DataType &key, RBTreeNode<DataType>* parent = nullptr,
+    RBTreeNode<DataType>* left = nullptr,
+      RBTreeNode<DataType>* right = nullptr, colors color = colors::RED) {
+    this->key = key;
+    this->parent = parent;
+    this->left = left;
+    this->right = right;
+    this->color = color;
+  }
 
   /** Destructor. */
   ~RBTreeNode() {}
 
   /** Get the node's key. */
-  DataType getKey() const { return key; }
+  DataType getKey() const {
+    return key;
+  }
 
   /** Get the node's parent. */
-  RBTreeNode<DataType> *getParent() const { return parent; }
+  RBTreeNode<DataType> *getParent() const {
+    return parent;
+  }
 
   /** Get the left child of the node. */
-  RBTreeNode<DataType> *getLeft() const { return left; }
+  RBTreeNode<DataType> *getLeft() const {
+    return left;
+  }
 
   /** Get the right child of the node. */
-  RBTreeNode<DataType> *getRight() const { return right; }
+  RBTreeNode<DataType> *getRight() const {
+    return right;
+  }
 
   /** Set the node's key. */
-  void setKey(DataType key) { this->key = key; }
+  void setKey(DataType key) {
+    this->key = key;
+  }
 
   /** Set the parent of the node. */
-  void setParent(RBTreeNode<DataType> *parent) { this->parent = parent; }
+  void setParent(RBTreeNode<DataType> *parent) {
+    this->parent = parent;
+  }
 
   /** Set the left child of the node. */
-  void setLeft(RBTreeNode<DataType> *left) { this->left = left; }
+  void setLeft(RBTreeNode<DataType> *left) {
+    this->left = left;
+  }
 
   /** Set the right child of the node. */
-  void setRight(RBTreeNode<DataType> *right) { this->right = right; }
+  void setRight(RBTreeNode<DataType> *right) {
+    this->right = right;
+  }
 
  private:
   DataType key;
@@ -189,10 +215,14 @@ class RBTree {
   }
 
   /** Returns root node. */
-  RBTreeNode<DataType> *getRoot() const { return root; }
+  RBTreeNode<DataType> *getRoot() const {
+    return root;
+  }
 
   /** Returns sentinel node. */
-  RBTreeNode<DataType> *getNil() const { return nil; }
+  RBTreeNode<DataType> *getNil() const {
+    return nil;
+  }
 
  private:
   RBTreeNode<DataType> *root;

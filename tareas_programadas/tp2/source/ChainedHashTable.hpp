@@ -14,10 +14,15 @@ template <typename DataType>
 class ChainedHashTable {
  public:
   /** Constructor: creates the table with 'm' doubly linked lists. */
-  ChainedHashTable(size_t size) : size(size), table(size) {}
+  ChainedHashTable(size_t size) {
+    this->size = size;
+    table.resize(size);
+  }
 
   /** Destructor. */
-  ~ChainedHashTable() { clear(); }
+  ~ChainedHashTable() {
+    clear();
+  }
 
   /** Function to clear all lists in the hash table. */
   void clear() {
@@ -50,7 +55,9 @@ class ChainedHashTable {
   }
 
   /** Get the table size. */
-  size_t getSize() const { return size; }
+  size_t getSize() const {
+    return size;
+  }
 
   /** Set a new table size and resize the underlying storage. */
   void setSize(size_t newSize) {
@@ -59,15 +66,21 @@ class ChainedHashTable {
   }
 
   /** Get the current table for inspection or debugging. */
-  std::vector<DLList<DataType>> getTable() const { return table; }
+  std::vector<DLList<DataType>> getTable() const {
+    return table;
+  }
 
   /** Set a new table. */
-  void setTable(std::vector<DLList<DataType>> newTable) { table = newTable; }
+  void setTable(std::vector<DLList<DataType>> newTable) {
+    table = newTable;
+  }
 
  private:
   size_t size;
   std::vector<DLList<DataType>> table;
 
   /** Hash function based on 'h(k) = k % m'. */
-  size_t hash(const DataType &key) const { return key % size; }
+  size_t hash(const DataType &key) const {
+    return key % size;
+  }
 };

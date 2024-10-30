@@ -6,6 +6,7 @@
  */
 
 #pragma once
+#include <cstddef>
 #include <iostream>
 #include <stack>
 
@@ -25,35 +26,53 @@ class BSTreeNode {
   /** Default constructor. */
   BSTreeNode() = default;
 
-  /** Constructor with values and pointers. */
+  /** Constructor with value and pointers. */
   BSTreeNode(const DataType &value, BSTreeNode<DataType> *parent = nullptr,
-    BSTreeNode<DataType> *left = nullptr,
-      BSTreeNode<DataType> *right = nullptr)
-        : key(value), parent(parent), left(left), right(right) {}
+    BSTreeNode<DataType> *left = nullptr, BSTreeNode<DataType>
+      *right = nullptr) {
+    key = value;
+    this->parent = parent;
+    this->left = left;
+    this->right = right;
+  }
 
   /** Destructor. */
   ~BSTreeNode() {}
 
   /** Get nodes's key. */
-  DataType getKey() const { return key; }
+  DataType getKey() const {
+    return key;
+  }
 
   /** Get parent node. */
-  BSTreeNode<DataType> *getParent() const { return parent; }
+  BSTreeNode<DataType> *getParent() const {
+    return parent;
+  }
 
   /** Get node on the left. */
-  BSTreeNode<DataType> *getLeft() const { return left; }
+  BSTreeNode<DataType> *getLeft() const {
+    return left;
+  }
 
   /** Get node on the rigth. */
-  BSTreeNode<DataType> *getRight() const { return right; }
+  BSTreeNode<DataType> *getRight() const {
+    return right;
+  }
 
   /** Set parent node. */
-  void setParent(BSTreeNode<DataType> *parent) { this->parent = parent; }
+  void setParent(BSTreeNode<DataType> *parent) {
+    this->parent = parent;
+  }
 
   /** Set node on the left. */
-  void setLeft(BSTreeNode<DataType> *left) { this->left = left; }
+  void setLeft(BSTreeNode<DataType> *left) {
+    this->left = left;
+  }
 
   /** Set node on the rigth. */
-  void setRight(BSTreeNode<DataType> *right) { this->right = right; }
+  void setRight(BSTreeNode<DataType> *right) {
+    this->right = right;
+  }
 
  private:
   DataType key;
@@ -72,10 +91,14 @@ template <typename DataType>
 class BSTree {
  public:
   /** Constructor. */
-  BSTree() : root(nullptr) {}
+  BSTree() {
+    root = nullptr;
+  }
 
   /** Destructor. */
-  ~BSTree() { clear(); }
+  ~BSTree() {
+    clear();
+  }
 
   /** Function to clear all nodes from the tree. */
   void clear() {
@@ -111,16 +134,16 @@ class BSTree {
   }
 
   /** Search function. */
-  BSTreeNode<DataType> *search(const BSTreeNode<DataType> *node,
+  BSTreeNode<DataType> *search(const BSTreeNode<DataType> *rootOfSubtree,
     const DataType &value) const {
-    while (node != nullptr && value != node->getKey()) {
-      if (value < node->getKey()) {
-        node = node->getLeft();
+    while (rootOfSubtree != nullptr && value != rootOfSubtree->getKey()) {
+      if (value < rootOfSubtree->getKey()) {
+        rootOfSubtree = rootOfSubtree->getLeft();
       } else {
-        node = node->getRight();
+        rootOfSubtree = rootOfSubtree->getRight();
       }
     }
-    return const_cast<BSTreeNode<DataType> *>(node);
+    return const_cast<BSTreeNode<DataType> *>(rootOfSubtree);
   }
 
   /** Function to get maximum (iterative). */
@@ -153,9 +176,9 @@ class BSTree {
   }
 
   /** Inorder traversal (iterative). */
-  void inorderWalk(BSTreeNode<DataType> *node) const {
+  void inorderWalk(BSTreeNode<DataType> *rootOfSubtree) const {
     std::stack<BSTreeNode<DataType> *> stack;
-    BSTreeNode<DataType> *current = node;
+    BSTreeNode<DataType> *current = rootOfSubtree;
     while (current != nullptr || !stack.empty()) {
       while (current != nullptr) {
         stack.push(current);
@@ -167,6 +190,10 @@ class BSTree {
       current = current->getRight();
     }
   }
+
+  void preorderWalk(BSTreeNode<DataType> *rootOfSubtree) const {}
+
+  void postorderWalk(BSTreeNode<DataType> *rootOfSubtree) const {}
 
   /** Deletion function. */
   void remove(const DataType &value) {
@@ -191,7 +218,9 @@ class BSTree {
   }
 
   /** Returns root node. */
-  BSTreeNode<DataType> *getRoot() const { return root; }
+  BSTreeNode<DataType> *getRoot() const {
+    return root;
+  }
 
   /**
    * @note Why can inserting 𝑛 ordered keys into a binary search tree take too
