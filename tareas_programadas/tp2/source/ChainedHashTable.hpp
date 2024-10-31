@@ -10,10 +10,19 @@
 
 #include "DoublyLinkedList.hpp"
 
+/**
+ * @class ChainedHashTable
+ * @brief Implements a hash table with chaining for collision resolution.
+ * @tparam DataType Type of data stored in the hash table.
+ */
 template <typename DataType>
 class ChainedHashTable {
  public:
-  /** Constructor: creates the table with 'm' doubly linked lists. */
+  /**
+   * @brief Constructor that initializes the hash table with a specified number
+   * of buckets.
+   * @param size The number of buckets in the hash table.
+   */
   ChainedHashTable(size_t size) {
     this->size = size;
     table.resize(size);
@@ -24,62 +33,94 @@ class ChainedHashTable {
     clear();
   }
 
-  /** Function to clear all lists in the hash table. */
+  /**
+   * @brief Clears all buckets in the hash table.
+   * @details Deletes all elements in each linked list of the table.
+   */
   void clear() {
     for (auto &list : table) {
       list.clear();
     }
   }
 
-  /** Function to insert a value into the table, avoiding duplicates. */
+  /**
+   * @brief Inserts a value into the hash table, avoiding duplicates.
+   * @param value The value to insert.
+   * @details Checks if the value already exists in the appropriate bucket
+   * before insertion.
+   */
   void insert(const DataType &value) {
     size_t index = hash(value);
-    /** Check if the value is already in the list to avoid duplicates. */
-    if (table[index].search(value) == nullptr) {  /** Search for duplicates. */
-      table[index].insert(value);  /** Insert if not found. */
+    if (table[index].search(value) == nullptr) {  /** Avoid duplicates. */
+      table[index].insert(value);
     }
   }
 
-  /** Function to search for a value in the table. */
+  /**
+   * @brief Searches for a value in the hash table.
+   * @param value The value to search for.
+   * @return Pointer to the node containing the value, or nullptr if not found.
+   */
   DLListNode<DataType> *search(const DataType &value) const {
     size_t index = hash(value);
-    /** Performs the search in the corresponding list. */
     return table[index].search(value);
   }
 
-  /** Function to remove a value from the table. */
+  /**
+   * @brief Removes a value from the hash table.
+   * @param value The value to remove.
+   * @details Removes the value if it exists in the corresponding bucket.
+   */
   void remove(const DataType &value) {
     size_t index = hash(value);
-    /** Removes the value in the corresponding list if it exists. */
     table[index].remove(value);
   }
 
-  /** Get the table size. */
+  /**
+   * @brief Retrieves the current size (number of buckets) of the hash table.
+   * @return The number of buckets in the hash table.
+   */
   size_t getSize() const {
     return size;
   }
 
-  /** Set a new table size and resize the underlying storage. */
+  /**
+   * @brief Sets a new size for the hash table and resizes the table.
+   * @param newSize The new number of buckets for the hash table.
+   */
   void setSize(size_t newSize) {
     size = newSize;
     table.resize(newSize);
   }
 
-  /** Get the current table for inspection or debugging. */
+  /**
+   * @brief Retrieves the current hash table.
+   * @return A vector of doubly linked lists representing the table buckets.
+   */
   std::vector<DLList<DataType>> getTable() const {
     return table;
   }
 
-  /** Set a new table. */
+  /**
+   * @brief Sets a new hash table.
+   * @param newTable A vector of doubly linked lists to replace the current
+   * table.
+   */
   void setTable(std::vector<DLList<DataType>> newTable) {
     table = newTable;
   }
 
  private:
-  size_t size;
+  size_t size;  /** Number of buckets in the hash table. */
+  /** Hash table represented by a vector of doubly linked lists. */
   std::vector<DLList<DataType>> table;
 
-  /** Hash function based on 'h(k) = k % m'. */
+  /**
+   * @brief Hash function that computes the bucket index for a given key.
+   * @param key The key to hash.
+   * @return The index of the bucket for the key.
+   * @details Uses a simple mod hash function: h(k) = k % m.
+   */
   size_t hash(const DataType &key) const {
     return key % size;
   }

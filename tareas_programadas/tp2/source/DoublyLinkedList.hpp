@@ -10,19 +10,32 @@
 template <typename DataType>
 class DLList;
 
+/**
+ * @class DLListNode
+ * @brief Represents a node in a doubly linked list.
+ * @tparam DataType Type of the data stored in the node.
+ */
 template <typename DataType>
 class DLListNode {
  public:
   friend class DLList<DataType>;
 
-  /** Default constructor. */
+  /**
+   * @brief Default constructor.
+   * Initializes the node with default values.
+   */
   DLListNode() {
     key = DataType();
     next = nullptr;
     prev = nullptr;
   }
 
-  /** Constructor with values and pointers. */
+  /**
+   * @brief Constructor with values and pointers.
+   * @param value The value to store in the node.
+   * @param next Pointer to the next node in the list.
+   * @param prev Pointer to the previous node in the list.
+   */
   DLListNode(const DataType &value, DLListNode<DataType> *next = nullptr,
     DLListNode<DataType> *prev = nullptr) {
     this->key = value;
@@ -33,59 +46,89 @@ class DLListNode {
   /** Destructor. */
   ~DLListNode() {}
 
-  /** Getter for the node's key value. */
+  /**
+   * @brief Retrieves the value stored in the node.
+   * @return The value stored in the node.
+   */
   DataType getKey() const {
     return key;
   }
 
-  /** Getter for the previous node pointer. */
+  /**
+   * @brief Retrieves a pointer to the previous node.
+   * @return Pointer to the previous node.
+   */
   DLListNode<DataType> *getPrev() const {
     return prev;
   }
 
-  /** Getter for the next node pointer. */
+  /**
+   * @brief Retrieves a pointer to the next node.
+   * @return Pointer to the next node.
+   */
   DLListNode<DataType> *getNext() const {
     return next;
   }
 
-  /** Setter for the node's key value. */
+  /**
+   * @brief Sets the value stored in the node.
+   * @param key The new value to store.
+   */
   void setKey(DataType key) {
     this->key = key;
   }
 
-  /** Setter for the previous node pointer. */
+  /**
+   * @brief Sets the pointer to the previous node.
+   * @param prev Pointer to the previous node.
+   */
   void setPrev(DLListNode<DataType> *prev) {
     this->prev = prev;
   }
 
-  /** Setter for the next node pointer. */
+  /**
+   * @brief Sets the pointer to the next node.
+   * @param next Pointer to the next node.
+   */
   void setNext(DLListNode<DataType> *next) {
     this->next = next;
   }
 
  private:
-  DataType key;
-  DLListNode<DataType> *next;
-  DLListNode<DataType> *prev;
+  DataType key;                /** Value stored in the node. */
+  DLListNode<DataType> *next;  /** Pointer to the next node. */
+  DLListNode<DataType> *prev;  /** Pointer to the previous node. */
 };
 
+/**
+ * @class DLList
+ * @brief Implements all functions to create a doubly linked list. It is used
+ * to correct collisions in the Hash Table.
+ * @tparam DataType Type of data stored in the list nodes.
+ */
 template <typename DataType>
 class DLList {
  public:
-  /** Constructor. */
+  /**
+   * @brief Constructor.
+   * @details Initializes an empty list with a sentinel node.
+   */
   DLList() {
     nil = new DLListNode<DataType>();
     nil->next = nil;
     nil->prev = nil;
   }
 
-  /** Destructor. */
+  /**
+   * @brief Destructor.
+   * @details Clears the list and deletes the sentinel node.
+   */
   ~DLList() {
     clear();
     delete nil;
   }
 
-  /** Function to clear all nodes in the list. */
+  /** Removes all nodes from the list. */
   void clear() {
     DLListNode<DataType> *current = nil->next;
     while (current != nil) {
@@ -97,7 +140,10 @@ class DLList {
     nil->prev = nil;
   }
 
-  /** Insert a value at the beginning of the list. */
+  /**
+   * @brief Inserts a value at the beginning of the list.
+   * @param value The value to insert.
+   */
   void insert(const DataType &value) {
     DLListNode<DataType> *newNode = new DLListNode<DataType>(value, nil->next,
       nil);
@@ -105,7 +151,11 @@ class DLList {
     nil->next = newNode;
   }
 
-  /** Search for a value and return a pointer to the node if found. */
+  /**
+   * @brief Searches for a value in the list.
+   * @param value The value to search for.
+   * @return Pointer to the node containing the value, or nullptr if not found.
+   */
   DLListNode<DataType> *search(const DataType &value) const {
     DLListNode<DataType> *current = nil->next;
     while (current != nil && current->key != value) {
@@ -114,7 +164,10 @@ class DLList {
     return (current == nil) ? nullptr : current;
   }
 
-  /** Remove a value from the list. */
+  /**
+   * @brief Removes a node with a specified value from the list.
+   * @param value The value of the node to remove.
+   */
   void remove(const DataType &value) {
     DLListNode<DataType> *node = search(value);
     if (node != nullptr) {
@@ -122,7 +175,10 @@ class DLList {
     }
   }
 
-  /** Remove a specific node from the list. */
+  /**
+   * @brief Removes a specified node from the list.
+   * @param node Pointer to the node to remove.
+   */
   void remove(DLListNode<DataType> *node) {
     if (node != nil) {
       node->prev->next = node->next;
@@ -131,11 +187,15 @@ class DLList {
     }
   }
 
-  /** Get the sentinel node. */
+  /**
+   * @brief Retrieves the sentinel node.
+   * @return Pointer to the sentinel node.
+   */
   DLListNode<DataType> *getNil() const {
     return nil;
   }
 
  private:
-  DLListNode<DataType> *nil;  /** Sentinel node to ease operations. */
+  /** Sentinel node to ease list operations. */
+  DLListNode<DataType> *nil;
 };

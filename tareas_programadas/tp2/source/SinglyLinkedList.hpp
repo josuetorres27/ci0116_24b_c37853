@@ -12,22 +12,29 @@ template <typename DataType>
 class SLList;
 
 /**
- * @brief Node class for singly linked list with sentinel.
- *
- * @tparam DataType Type of data stored in the node.
+ * @class SLListNode
+ * @brief Represents a node in a singly linked list with a sentinel.
+ * @tparam DataType Type of the data stored in the node.
  */
 template <typename DataType>
 class SLListNode {
  public:
   friend class SLList<DataType>;
 
-  /** Default constructor. */
+  /**
+   * @brief Default constructor.
+   * @details Initializes the node with a default value and null next pointer.
+   */
   SLListNode() {
     key = DataType();
     next = nullptr;
   }
 
-  /** Constructor with value and pointer. */
+  /**
+   * @brief Constructor with value and next pointer.
+   * @param value The value to store in the node.
+   * @param next Pointer to the next node in the list.
+   */
   SLListNode(const DataType &value, SLListNode<DataType> *next = nullptr) {
     key = value;
     this->next = next;
@@ -36,49 +43,73 @@ class SLListNode {
   /** Destructor. */
   ~SLListNode() {}
 
-  /** Access and modification functions. */
+  /**
+   * @brief Retrieves the value stored in the node.
+   * @return The value stored in the node.
+   */
   DataType getKey() const {
     return key;
   }
 
+  /**
+   * @brief Retrieves the next node pointer.
+   * @return Pointer to the next node in the list.
+   */
   SLListNode<DataType> *getNext() const {
     return next;
   }
 
+  /**
+   * @brief Sets the value stored in the node.
+   * @param key The new value to store.
+   */
   void setKey(DataType key) {
     this->key = key;
   }
 
+  /**
+   * @brief Sets the next node pointer.
+   * @param next Pointer to the next node.
+   */
   void setNext(SLListNode<DataType> *next) {
     this->next = next;
   }
 
  private:
-  DataType key;
-  SLListNode<DataType> *next;
+  DataType key;                /** Value stored in the node. */
+  SLListNode<DataType> *next;  /** Pointer to the next node. */
 };
 
 /**
- * @brief Singly linked list with a sentinel node.
- *
- * @tparam DataType Type of data stored in the list.
+ * @class SLList
+ * @brief Implements all functions to create a singly linked list with a
+ * sentinel node.
+ * @tparam DataType Type of data stored in the list nodes.
  */
 template <typename DataType>
 class SLList {
  public:
-  /** Constructor. */
+  /**
+   * @brief Constructor.
+   * @details Initializes an empty list with a sentinel node.
+   */
   SLList() {
-    nil = new SLListNode<DataType>();  /** Sentinel node. */
-    nil->setNext(nil);  /** Initialize itself. */
+    /** Sentinel node. */
+    nil = new SLListNode<DataType>();
+    /** Points sentinel to itself to denote an empty list. */
+    nil->setNext(nil);
   }
 
-  /** Destructor. */
+  /**
+   * @brief Destructor.
+   * @details Clears the list and deletes the sentinel node.
+   */
   ~SLList() {
     clear();
     delete nil;  /** Frees sentinel after clearing the list. */
   }
 
-  /** Function to clear all nodes from the list. */
+  /** Removes all nodes from the list. */
   void clear() {
     SLListNode<DataType> *current = nil->getNext();
     while (current != nil) {
@@ -89,14 +120,21 @@ class SLList {
     nil->setNext(nil);
   }
 
-  /** Insertion function. */
+  /**
+   * @brief Inserts a value at the beginning of the list.
+   * @param value The value to insert.
+   */
   void insert(const DataType &value) {
     SLListNode<DataType> *newNode =
       new SLListNode<DataType>(value, nil->getNext());
     nil->setNext(newNode);
   }
 
-  /** Search function (returns first occurrence). */
+  /**
+   * @brief Searches for the first occurrence of a value in the list.
+   * @param value The value to search for.
+   * @return Pointer to the node containing the value, or nullptr if not found.
+   */
   SLListNode<DataType> *search(const DataType &value) const {
     SLListNode<DataType> *current = nil->getNext();
     while (current != nil) {
@@ -105,10 +143,13 @@ class SLList {
       }
       current = current->getNext();
     }
-    return nullptr;  /** Not found. */
+    return nullptr;  /** Value not found. */
   }
 
-  /** Deletion function (deletes all occurrences). */
+  /**
+   * @brief Removes all nodes with a specified value from the list.
+   * @param value The value of the nodes to remove.
+   */
   void remove(const DataType &value) {
     SLListNode<DataType> *current = nil;
     while (current->getNext() != nil) {
@@ -122,11 +163,15 @@ class SLList {
     }
   }
 
-  /** Returns sentinel node. */
+  /**
+   * @brief Retrieves the sentinel node.
+   * @return Pointer to the sentinel node.
+   */
   SLListNode<DataType> *getNil() const {
     return nil;
   }
 
  private:
+  /** Sentinel node to ease list operations. */
   SLListNode<DataType> *nil;
 };
