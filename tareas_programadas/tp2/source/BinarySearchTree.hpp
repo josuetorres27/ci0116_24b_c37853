@@ -23,13 +23,24 @@ template <typename DataType>
 class BSTreeNode {
  public:
   friend class BSTree<DataType>;
-  /** Default constructor. */
+
+  /** 
+   * @brief Default constructor that initializes an empty node with all 
+   * pointers set to nullptr.
+   */
   BSTreeNode() = default;
 
-  /** Constructor with value and pointers. */
+  /**
+   * @brief Constructs a node with a specified key, parent, left child, and
+   * right child.
+   * @param value The key value to store in the node.
+   * @param parent Pointer to the parent node (default is nullptr).
+   * @param left Pointer to the left child node (default is nullptr).
+   * @param right Pointer to the right child node (default is nullptr).
+   */
   BSTreeNode(const DataType &value, BSTreeNode<DataType> *parent = nullptr,
-    BSTreeNode<DataType> *left = nullptr, BSTreeNode<DataType>
-      *right = nullptr) {
+    BSTreeNode<DataType> *left = nullptr,
+      BSTreeNode<DataType> *right = nullptr) {
     key = value;
     this->parent = parent;
     this->left = left;
@@ -39,46 +50,67 @@ class BSTreeNode {
   /** Destructor. */
   ~BSTreeNode() {}
 
-  /** Get nodes's key. */
+  /**
+   * @brief Retrieves the key stored in the node.
+   * @return The key value.
+   */
   DataType getKey() const {
     return key;
   }
 
-  /** Get parent node. */
+  /**
+   * @brief Retrieves the parent node.
+   * @return Pointer to the parent node.
+   */
   BSTreeNode<DataType> *getParent() const {
     return parent;
   }
 
-  /** Get node on the left. */
+  /**
+   * @brief Retrieves the left child node.
+   * @return Pointer to the left child node.
+   */
   BSTreeNode<DataType> *getLeft() const {
     return left;
   }
 
-  /** Get node on the rigth. */
+  /**
+   * @brief Retrieves the right child node.
+   * @return Pointer to the right child node.
+   */
   BSTreeNode<DataType> *getRight() const {
     return right;
   }
 
-  /** Set parent node. */
+  /**
+   * @brief Sets the parent node pointer.
+   * @param parent Pointer to the new parent node.
+   */
   void setParent(BSTreeNode<DataType> *parent) {
     this->parent = parent;
   }
 
-  /** Set node on the left. */
+  /**
+   * @brief Sets the left child node pointer.
+   * @param left Pointer to the new left child node.
+   */
   void setLeft(BSTreeNode<DataType> *left) {
     this->left = left;
   }
 
-  /** Set node on the rigth. */
+  /**
+   * @brief Sets the right child node pointer.
+   * @param right Pointer to the new right child node.
+   */
   void setRight(BSTreeNode<DataType> *right) {
     this->right = right;
   }
 
  private:
-  DataType key;
-  BSTreeNode<DataType> *parent = nullptr;
-  BSTreeNode<DataType> *left = nullptr;
-  BSTreeNode<DataType> *right = nullptr;
+  DataType key;  /** The key value stored in the node. */
+  BSTreeNode<DataType> *parent = nullptr;  /** Pointer to the parent. */
+  BSTreeNode<DataType> *left = nullptr;  /** Pointer to the left child. */
+  BSTreeNode<DataType> *right = nullptr;  /** Pointer to the right child. */
 };
 
 /**
@@ -100,13 +132,23 @@ class BSTree {
     clear();
   }
 
-  /** Function to clear all nodes from the tree. */
+  /**
+   * @brief Removes all nodes from the tree.
+   *
+   * @details Frees memory occupied by each node, recursively traversing 
+   * from the root to all child nodes.
+   */
   void clear() {
     clear(root);
     root = nullptr;
   }
 
-  /** Insertion function. */
+  /**
+   * @brief Inserts a new value into the tree.
+   * 
+   * @param value The value to be inserted into the tree.
+   * @note Duplicated values are ignored.
+   */
   void insert(const DataType &value) {
     BSTreeNode<DataType> *newNode = new BSTreeNode<DataType>(value);
     BSTreeNode<DataType> *y = nullptr;
@@ -133,7 +175,13 @@ class BSTree {
     }
   }
 
-  /** Search function. */
+  /**
+   * @brief Searches for a value within the subtree rooted at the given node.
+   *
+   * @param rootOfSubtree The subtree root node where the search starts.
+   * @param value The value to search for.
+   * @return Pointer to the node containing the value, or nullptr if not found.
+   */
   BSTreeNode<DataType> *search(const BSTreeNode<DataType> *rootOfSubtree,
     const DataType &value) const {
     while (rootOfSubtree != nullptr && value != rootOfSubtree->getKey()) {
@@ -146,7 +194,13 @@ class BSTree {
     return const_cast<BSTreeNode<DataType> *>(rootOfSubtree);
   }
 
-  /** Function to get maximum (iterative). */
+  /**
+   * @brief Finds the maximum value in the subtree rooted at the given node.
+   *
+   * @param node The root of the subtree.
+   * @return Pointer to the node with the maximum value, or nullptr if the
+   * subtree is empty.
+   */
   BSTreeNode<DataType> *getMaximum(const BSTreeNode<DataType> *node) const {
     while (node && node->getRight() != nullptr) {
       node = node->getRight();
@@ -154,7 +208,13 @@ class BSTree {
     return const_cast<BSTreeNode<DataType> *>(node);
   }
 
-  /** Function to get minimum (iterative). */
+  /**
+   * @brief Finds the minimum value in the subtree rooted at the given node.
+   * 
+   * @param node The root of the subtree.
+   * @return Pointer to the node with the minimum value, or nullptr if the
+   * subtree is empty.
+   */
   BSTreeNode<DataType> *getMinimum(const BSTreeNode<DataType> *node) const {
     while (node && node->getLeft() != nullptr) {
       node = node->getLeft();
@@ -162,7 +222,12 @@ class BSTree {
     return const_cast<BSTreeNode<DataType> *>(node);
   }
 
-  /** Function to get successor node (iterative). */
+  /**
+   * @brief Finds the successor of the given node.
+   *
+   * @param node The node whose successor is to be found.
+   * @return Pointer to the successor node, or nullptr if no successor exists.
+   */
   BSTreeNode<DataType> *getSuccessor(const BSTreeNode<DataType> *node) const {
     if (node->getRight() != nullptr) {
       return getMinimum(node->getRight());
@@ -175,7 +240,11 @@ class BSTree {
     return parent;
   }
 
-  /** Inorder traversal (iterative). */
+  /**
+   * @brief Performs an inorder traversal of the tree, printing node values.
+   *
+   * @param rootOfSubtree The subtree root to start the inorder traversal from.
+   */
   void inorderWalk(BSTreeNode<DataType> *rootOfSubtree) const {
     std::stack<BSTreeNode<DataType> *> stack;
     BSTreeNode<DataType> *current = rootOfSubtree;
@@ -191,11 +260,17 @@ class BSTree {
     }
   }
 
+  /** Could be implemented in the future. */
   void preorderWalk(BSTreeNode<DataType> *rootOfSubtree) const {}
 
+  /** Could be implemented in the future. */
   void postorderWalk(BSTreeNode<DataType> *rootOfSubtree) const {}
 
-  /** Deletion function. */
+  /**
+   * @brief Deletes a node containing the specified value from the tree.
+   *
+   * @param value The value of the node to be deleted.
+   */
   void remove(const DataType &value) {
     BSTreeNode<DataType> *node = search(root, value);
     if (node == nullptr) return;
@@ -217,7 +292,11 @@ class BSTree {
     delete node;
   }
 
-  /** Returns root node. */
+  /**
+   * @brief Retrieves the root of the tree.
+   * 
+   * @return Pointer to the root node, or nullptr if the tree is empty.
+   */
   BSTreeNode<DataType> *getRoot() const {
     return root;
   }
@@ -244,15 +323,25 @@ class BSTree {
    * additional traversal or rebalancing.
    */
 
-  /** Function for fast insertion of an ordered sequence of keys. */
+  /**
+   * @brief Efficiently inserts an ordered sequence of keys by constructing a
+   * balanced tree.
+   * 
+   * @param n The number of keys in the ordered sequence.
+   */
   void fastInsert(size_t n) {
     root = buildBalancedTree(0, n - 1);
   }
 
  private:
-  BSTreeNode<DataType> *root;
+  BSTreeNode<DataType> *root;  /** The root node of the tree. */
 
-  /** Recursive function to clear all nodes from the tree. */
+  /**
+   * @brief Recursively clears all nodes from the subtree rooted at the
+   * specified node.
+   *
+   * @param node The root node of the subtree to clear.
+   */
   void clear(BSTreeNode<DataType> *node) {
     if (node != nullptr) {
       clear(node->left);
@@ -261,6 +350,13 @@ class BSTree {
     }
   }
 
+  /**
+   * @brief Recursively builds a balanced binary search tree.
+   *
+   * @param start The start index for the range of keys.
+   * @param end The end index for the range of keys.
+   * @return Pointer to the root of the balanced subtree.
+   */
   BSTreeNode<DataType>* buildBalancedTree(int start, int end) {
     if (start > end) {
       return nullptr;
@@ -280,7 +376,12 @@ class BSTree {
     return node;
   }
 
-  /** Auxiliary function for deleting. */
+  /**
+   * @brief Transplants one subtree in place of another.
+   *
+   * @param u The subtree to be replaced.
+   * @param v The subtree to be placed in the position of 'u'.
+   */
   void transplant(BSTreeNode<DataType> *u, BSTreeNode<DataType> *v) {
     if (u->getParent() == nullptr) {
       root = v;

@@ -12,12 +12,22 @@ enum colors { RED, BLACK };
 template <typename DataType>
 class RBTree;
 
+/**
+ * @class RBTreeNode
+ * @brief A node class for a Red-Black Tree (RBT) containing a key of generic
+ * data type, color, and pointers to its parent, left, and right children.
+ *
+ * @tparam DataType The data type of the node's key.
+ */
 template <typename DataType>
 class RBTreeNode {
  public:
   friend class RBTree<DataType>;
 
-  /** Default constructor. */
+  /** 
+   * @brief Default constructor that initializes a black node with a default 
+   * key value and all pointers set to nullptr.
+   */
   RBTreeNode() {
     key = DataType();
     parent = nullptr;
@@ -26,7 +36,16 @@ class RBTreeNode {
     color = colors::BLACK;
   }
 
-  /** Constructor with values and pointers. */
+  /**
+   * @brief Constructs a node with a specified key, parent, left child, 
+   * right child, and color.
+   *
+   * @param key The key value to store in the node.
+   * @param parent Pointer to the parent node (default is nullptr).
+   * @param left Pointer to the left child node (default is nullptr).
+   * @param right Pointer to the right child node (default is nullptr).
+   * @param color The color of the node, either RED or BLACK (default is RED).
+   */
   RBTreeNode(const DataType &key, RBTreeNode<DataType>* parent = nullptr,
     RBTreeNode<DataType>* left = nullptr,
       RBTreeNode<DataType>* right = nullptr, colors color = colors::RED) {
@@ -40,58 +59,105 @@ class RBTreeNode {
   /** Destructor. */
   ~RBTreeNode() {}
 
-  /** Get the node's key. */
+  /**
+   * @brief Retrieves the key stored in the node.
+   *
+   * @return The key value.
+   */
   DataType getKey() const {
     return key;
   }
 
-  /** Get the node's parent. */
+  /**
+   * @brief Retrieves the parent node.
+   *
+   * @return Pointer to the parent node.
+   */
   RBTreeNode<DataType> *getParent() const {
     return parent;
   }
 
-  /** Get the left child of the node. */
+  /**
+   * @brief Retrieves the left child node.
+   *
+   * @return Pointer to the left child node.
+   */
   RBTreeNode<DataType> *getLeft() const {
     return left;
   }
 
-  /** Get the right child of the node. */
+  /**
+   * @brief Retrieves the right child node.
+   *
+   * @return Pointer to the right child node.
+   */
   RBTreeNode<DataType> *getRight() const {
     return right;
   }
 
-  /** Set the node's key. */
+  /**
+   * @brief Sets the key of the node.
+   *
+   * @param key The new key value.
+   */
   void setKey(DataType key) {
     this->key = key;
   }
 
-  /** Set the parent of the node. */
+  /**
+   * @brief Sets the parent node pointer.
+   *
+   * @param parent Pointer to the new parent node.
+   */
   void setParent(RBTreeNode<DataType> *parent) {
     this->parent = parent;
   }
 
-  /** Set the left child of the node. */
+  /**
+   * @brief Sets the left child node pointer.
+   *
+   * @param left Pointer to the new left child node.
+   */
   void setLeft(RBTreeNode<DataType> *left) {
     this->left = left;
   }
 
-  /** Set the right child of the node. */
+  /**
+   * @brief Sets the right child node pointer.
+   *
+   * @param right Pointer to the new right child node.
+   */
   void setRight(RBTreeNode<DataType> *right) {
     this->right = right;
   }
 
  private:
-  DataType key;
-  RBTreeNode<DataType> *parent;
-  RBTreeNode<DataType> *left;
-  RBTreeNode<DataType> *right;
-  enum colors color;
+  DataType key;  /** The key value stored in the node. */
+  RBTreeNode<DataType> *parent;  /** Pointer to the parent node. */
+  RBTreeNode<DataType> *left;  /** Pointer to the left child node. */
+  RBTreeNode<DataType> *right;  /** Pointer to the right child node. */
+  enum colors color;  /** Color of the node, either red or black. */
 };
 
+/**
+ * @class RBTree
+ * @brief Implementation of a Red-Black Tree (RBTree), a self-balancing binary
+ * search tree.
+ *
+ * @details The RBTree class maintains balanced tree properties, ensuring
+ * efficient insertions, deletions, and lookups.
+ * @tparam DataType Type of data stored in each tree node.
+ */
 template <typename DataType>
 class RBTree {
  public:
-  /** Constructor. */
+  /**
+   * @brief Constructor.
+   *
+   * @details Initializes the red-black tree by creating a sentinel (nil) node
+   * with color black. The root of the tree is set to the nil node, indicating
+   * an initially empty tree.
+   */
   RBTree() {
     nil = new RBTreeNode<DataType>();
     nil->color = BLACK;
@@ -99,19 +165,37 @@ class RBTree {
     root = nil;
   }
 
-  /** Destructor. */
+  /**
+   * @brief Destructor.
+   *
+   * @details Calls clearTree to recursively delete all nodes in the tree. The
+   * sentinel node (nil) is then deleted, freeing all allocated memory.
+   */
   ~RBTree() {
     clearTree(root);
     delete nil;
   }
 
-  /** Function to clear all nodes from the tree. */
+  /**
+   * @brief Clears all nodes from the tree.
+   *
+   * @details Calls 'clearTree()' to recursively free memory starting from the
+   * root, then points the root to 'nil'.
+   */
   void clear() {
     clearTree(root);
     root = nil;
   }
 
-  /** Insertion function. */
+  /**
+   * @brief Insertion function.
+   *
+   * @details Inserts a new node with the given value into the tree, ensuring
+   * it remains balanced.
+   * @param value The value to insert.
+   * @note Duplicates are not allowed; if the value already exists, the
+   * function exits early.
+   */
   void insert(const DataType &value) {
     /** Check if the value already exists to prevent duplicates. */
     if (search(root, value) != nil) return;
@@ -139,7 +223,15 @@ class RBTree {
     insertFixup(node);
   }
 
-  /** Deletion function. */
+  /**
+   * @brief Deletion function.
+   *
+   * @details Removes a node with the specified value from the tree, if it
+   * exists, maintaining balance.
+   * @param value The value to remove.
+   * After removal, a fixup function is called if necessary to restore
+   * red-black properties.
+   */
   void remove(const DataType &value) {
     RBTreeNode<DataType> *nodeToDelete = search(root, value);
     if (nodeToDelete == nil) return;
@@ -172,11 +264,19 @@ class RBTree {
     if (originalColor == BLACK) removeFixup(x);
   }
 
-  /** Search function. */
+  /**
+   * @brief Search function.
+   *
+   * @details Searches for a node with a specified value in a subtree rooted at
+   * a given node.
+   * @param rootOfSubtree The root of the subtree to search.
+   * @param value The value to search for.
+   * @return A pointer to the found node or the sentinel (nil) if not found.
+   */
   RBTreeNode<DataType> *search(const RBTreeNode<DataType> *rootOfSubtree,
     const DataType &value) const {
     RBTreeNode<DataType> *node = const_cast<RBTreeNode<DataType> *>
-      (rootOfSubtree);  // Eliminar const
+      (rootOfSubtree);
     while (node != nil && node->key != value) {
       if (value < node->key)
         node = node->left;
@@ -186,7 +286,14 @@ class RBTree {
     return node;
   }
 
-  /** Function to get maximum. */
+  /**
+   * @brief Function to get maximum.
+   *
+   * @details Finds the maximum (rightmost) node in a subtree rooted at a
+   * specified node.
+   * @param rootOfSubtree The root of the subtree.
+   * @return A pointer to the node with the maximum value in the subtree.
+   */
   RBTreeNode<DataType> *getMaximum(const RBTreeNode<DataType>
     *rootOfSubtree) const {
     RBTreeNode<DataType> *node = rootOfSubtree;
@@ -194,7 +301,14 @@ class RBTree {
     return node;
   }
 
-  /** Function to get minimum. */
+  /**
+   * @brief Function to get minimum.
+   *
+   * @details Finds the minimum (leftmost) node in a subtree rooted at a
+   * specified node.
+   * @param rootOfSubtree The root of the subtree.
+   * @return A pointer to the node with the minimum value in the subtree.
+   */
   RBTreeNode<DataType> *getMinimum(const RBTreeNode<DataType>
     *rootOfSubtree) const {
     RBTreeNode<DataType> *node = const_cast<RBTreeNode<DataType> *>
@@ -203,7 +317,14 @@ class RBTree {
     return node;
   }
 
-  /** Function to get successor node. */
+  /**
+   * @brief Function to get successor node.
+   *
+   * @details Finds the successor of a given node, which is the node with the
+   * smallest value greater than the given node's value.
+   * @param node The node for which the successor is to be found.
+   * @return A pointer to the successor node, or nil if no successor exists.
+   */
   RBTreeNode<DataType> *getSuccessor(const RBTreeNode<DataType> *node) const {
     if (node->right != nil) return getMinimum(node->right);
     RBTreeNode<DataType> *y = node->parent;
@@ -214,22 +335,40 @@ class RBTree {
     return y;
   }
 
-  /** Returns root node. */
+  /**
+   * @brief Returns root node.
+   *
+   * @details Provides access to the root node of the red-black tree.
+   * @return A pointer to the root node.
+   */
   RBTreeNode<DataType> *getRoot() const {
     return root;
   }
 
-  /** Returns sentinel node. */
+  /**
+   * @brief Returns sentinel node.
+   *
+   * @details Provides access to the sentinel (nil) node, representing null
+   * leaves and boundaries.
+   * @return A pointer to the sentinel node.
+   */
   RBTreeNode<DataType> *getNil() const {
     return nil;
   }
 
  private:
+  /** Pointer to the tree's root node. */
   RBTreeNode<DataType> *root;
 
+  /** Sentinel node (NIL) used to represent empty nodes. */
   RBTreeNode<DataType> *nil;
 
-  /** Recursive function to clear all nodes from the tree. */
+  /**
+   * @brief Recursive function to clear all nodes from the tree, releasing node
+   * memory.
+   *
+   * @param node Node from which to start clearing.
+   */
   void clearTree(RBTreeNode<DataType> *node) {
     if (node != nil) {
       clearTree(node->left);
@@ -238,7 +377,13 @@ class RBTree {
     }
   }
 
-  /** Auxiliary function for deleting. */
+  /**
+   * @brief Auxiliary function to replace one subtree with another.
+   *
+   * @details Used during deletion to update node links.
+   * @param u Node to be replaced.
+   * @param v Node that will replace 'u'.
+   */
   void transplant(RBTreeNode<DataType> *u, RBTreeNode<DataType> *v) {
     if (u->parent == nullptr) {
       root = v;
@@ -252,7 +397,12 @@ class RBTree {
     }
   }
 
-  /** Auxiliary function to fix tree colors after insertion. */
+  /**
+   * @brief Function to fix colors after insertion, ensuring that the red-black
+   * tree properties are maintained.
+   *
+   * @param node Recently inserted node that may cause imbalance.
+   */
   void insertFixup(RBTreeNode<DataType> *node) {
     while (node->parent->color == RED) {
       if (node->parent == node->parent->parent->left) {
@@ -292,7 +442,13 @@ class RBTree {
     root->color = BLACK;
   }
 
-  /** Left rotation. */
+  /**
+   * @brief Left rotation in the tree.
+   *
+   * @details Changes structure between node 'x' and its right child to
+   * rebalance the tree.
+   * @param x Node on which the rotation is performed.
+   */
   void rotateLeft(RBTreeNode<DataType> *x) {
     RBTreeNode<DataType> *y = x->right;
     x->right = y->left;
@@ -308,7 +464,13 @@ class RBTree {
     x->parent = y;
   }
 
-  /** Rigth rotation. */
+  /**
+   * @brief Right rotation in the tree.
+   *
+   * @details Changes structure between node 'y' and its left child to
+   * rebalance the tree.
+   * @param y Node on which the rotation is performed.
+   */
   void rotateRight(RBTreeNode<DataType> *y) {
     RBTreeNode<DataType> *x = y->left;
     y->left = x->right;
@@ -324,7 +486,12 @@ class RBTree {
     y->parent = x;
   }
 
-  /** Auxiliary function to fix tree colors after deleting. */
+  /**
+   * @brief Function to fix colors after deletion, ensuring that the tree
+   * maintains color properties.
+   *
+   * @param x Node at which to start color correction.
+   */
   void removeFixup(RBTreeNode<DataType> *x) {
     while (x != root && x->color == BLACK) {
       if (x == x->parent->left) {

@@ -137,28 +137,28 @@ int main() {
   /** ----- Singly Linked List ----- */
 
   /** Create a Singly Linked List. */
-  SLList<int> sllist;
+  SLList<int> sll;
 
   /** 5.1.1. Random insertion. */
-  measureInsertion(sllist, n, rng, dist, false);
+  measureInsertion(sll, n, rng, dist, false);
 
   /** 5.1.1. Random search. */
-  measureSearch(sllist, e, rng, dist, false);
+  measureSearch(sll, e, rng, dist, false);
 
   /** 5.1.1. Random deletion. */
-  measureDeletion(sllist, e, rng, dist, false);
+  measureDeletion(sll, e, rng, dist, false);
 
   /** Clear Singly Linked List. */
-  sllist.clear();
+  sll.clear();
 
   /** 5.1.2. Ordered insertion. */
-  measureInsertion(sllist, n, rng, dist, true);
+  measureInsertion(sll, n, rng, dist, true);
 
   /** 5.1.2. Ordered search. */
-  measureSearch(sllist, e, rng, dist, true);
+  measureSearch(sll, e, rng, dist, true);
 
   /** 5.1.2. Ordered deletion. */
-  measureDeletion(sllist, e, rng, dist, true);
+  measureDeletion(sll, e, rng, dist, true);
 
   /** ----- Binary Search Tree ----- */
 

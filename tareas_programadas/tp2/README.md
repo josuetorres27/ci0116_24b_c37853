@@ -13,12 +13,12 @@ Como se solicitó en las instrucciones, el código se puede compilar sencillamen
 
 ### 2. Se debe escribir el siguiente comando:
 
-    g++ main.cpp -o programa_algoritmos
+    g++ main.cpp -o programa_estructuras
 
-Esto creará el archivo ejecutable del programa llamado 'programa_algoritmos'.
+Esto creará el archivo ejecutable del programa llamado 'programa_estructuras'.
 
 ### 3. Se debe escribir el comando:
 
-    ./programa_algoritmos
+    ./programa_estructuras
 
 De esta forma, el programa se ejecutará correctamente.
