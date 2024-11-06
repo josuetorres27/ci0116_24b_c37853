@@ -326,6 +326,14 @@ class BSTree {
  private:
   BSTreeNode<DataType> *root;  /** The root node of the tree. */
 
+  /**
+   * @brief Removes all nodes from the tree in an iterative manner.
+   *
+   * @details This function iteratively traverses the binary search tree using
+   * a stack to avoid recursion. It deletes each node in the tree, freeing the
+   * memory occupied by each node. After this operation, the tree will be
+   * empty, and the root will be set to nullptr.
+   */
   void clear() {
     if (root == nullptr) return;
     std::stack<BSTreeNode<DataType>*> stack;
