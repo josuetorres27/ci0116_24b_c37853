@@ -34,16 +34,6 @@ class ChainedHashTable {
   }
 
   /**
-   * @brief Clears all buckets in the hash table.
-   * @details Deletes all elements in each linked list of the table.
-   */
-  void clear() {
-    for (auto &list : table) {
-      list.clear();
-    }
-  }
-
-  /**
    * @brief Inserts a value into the hash table, avoiding duplicates.
    * @param value The value to insert.
    * @details Checks if the value already exists in the appropriate bucket
@@ -123,5 +113,15 @@ class ChainedHashTable {
    */
   size_t hash(const DataType &key) const {
     return key % size;
+  }
+
+  /**
+   * @brief Clears all buckets in the hash table.
+   * @details Deletes all elements in each linked list of the table.
+   */
+  void clear() {
+    for (auto &list : table) {
+      list.clear();
+    }
   }
 };

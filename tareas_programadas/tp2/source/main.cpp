@@ -137,106 +137,106 @@ int main() {
   /** ----- Singly Linked List ----- */
 
   /** Create a Singly Linked List. */
-  SLList<int> sll;
+  SLList<int> sllR;  /** Random list. */
 
   /** 5.1.1. Random insertion. */
-  measureInsertion(sll, n, rng, dist, false);
+  measureInsertion(sllR, n, rng, dist, false);
 
   /** 5.1.1. Random search. */
-  measureSearch(sll, e, rng, dist, false);
+  measureSearch(sllR, e, rng, dist, false);
 
   /** 5.1.1. Random deletion. */
-  measureDeletion(sll, e, rng, dist, false);
+  measureDeletion(sllR, e, rng, dist, false);
 
-  /** Clear Singly Linked List. */
-  sll.clear();
+  /** Create a Singly Linked List. */
+  SLList<int> sllO;  /** Ordered list. */
 
   /** 5.1.2. Ordered insertion. */
-  measureInsertion(sll, n, rng, dist, true);
+  measureInsertion(sllO, n, rng, dist, true);
 
   /** 5.1.2. Ordered search. */
-  measureSearch(sll, e, rng, dist, true);
+  measureSearch(sllO, e, rng, dist, true);
 
   /** 5.1.2. Ordered deletion. */
-  measureDeletion(sll, e, rng, dist, true);
+  measureDeletion(sllO, e, rng, dist, true);
 
   /** ----- Binary Search Tree ----- */
 
-  /** Create Binary Search Tree. */
-  BSTree<int> bst;
+  /** Create a Binary Search Tree. */
+  BSTree<int> bstR;  /** Random tree. */
 
   /** 5.1.1. Random insertion. */
-  measureInsertion(bst, n, rng, dist, false);
+  measureInsertion(bstR, n, rng, dist, false);
 
   /** 5.1.1. Random search. */
-  measureSearch(bst, e, rng, dist, false);
+  measureSearch(bstR, e, rng, dist, false);
 
   /** 5.1.1. Random deletion. */
-  measureDeletion(bst, e, rng, dist, false);
+  measureDeletion(bstR, e, rng, dist, false);
 
-  /** Clear Binary Search Tree. */
-  bst.clear();
+  /** Create a Binary Search Tree. */
+  BSTree<int> bstO;  /** Ordered tree. */
 
   /** 5.1.2. Ordered insertion. */
-  measureInsertion(bst, n, rng, dist, true);
+  measureInsertion(bstO, n, rng, dist, true);
 
   /** 5.1.2. Ordered search. */
-  measureSearch(bst, e, rng, dist, true);
+  measureSearch(bstO, e, rng, dist, true);
 
   /** 5.1.2. Ordered deletion. */
-  measureDeletion(bst, e, rng, dist, true);
+  measureDeletion(bstO, e, rng, dist, true);
 
   /** ----- Red-Black Tree ----- */
 
-  /** Create Red-Black Tree. */
-  RBTree<int> rbt;
+  /** Create a Red-Black Tree. */
+  RBTree<int> rbtR;  /** Random tree. */
 
   /** 5.1.2. Ordered insertion. */
-  measureInsertion(rbt, n, rng, dist, false);
+  measureInsertion(rbtR, n, rng, dist, false);
 
   /** 5.1.2. Ordered search. */
-  measureSearch(rbt, e, rng, dist, false);
+  measureSearch(rbtR, e, rng, dist, false);
 
   /** 5.1.2. Ordered deletion. */
-  measureDeletion(rbt, e, rng, dist, false);
+  measureDeletion(rbtR, e, rng, dist, false);
 
-  /** Clear Red-Black Tree. */
-  rbt.clear();
+  /** Create a Red-Black Tree. */
+  RBTree<int> rbtO;  /** Ordered tree. */
 
   /** 5.1.2. Ordered insertion. */
-  measureInsertion(rbt, n, rng, dist, true);
+  measureInsertion(rbtO, n, rng, dist, true);
 
   /** 5.1.2. Ordered search. */
-  measureSearch(rbt, e, rng, dist, true);
+  measureSearch(rbtO, e, rng, dist, true);
 
   /** 5.1.2. Ordered deletion. */
-  measureDeletion(rbt, e, rng, dist, true);
+  measureDeletion(rbtO, e, rng, dist, true);
 
   /** ----- Hash Table ----- */
 
-  /** Create Hash Table. */
-  ChainedHashTable<int> ht(m);
+  /** Create a Hash Table. */
+  ChainedHashTable<int> htR(m);  /** Random table. */
 
   /** 5.1.2. Ordered insertion. */
-  measureInsertion(ht, n, rng, dist, false);
+  measureInsertion(htR, n, rng, dist, false);
 
   /** 5.1.2. Ordered search. */
-  measureSearch(ht, e, rng, dist, false);
+  measureSearch(htR, e, rng, dist, false);
 
   /** 5.1.2. Ordered deletion. */
-  measureDeletion(ht, e, rng, dist, false);
+  measureDeletion(htR, e, rng, dist, false);
 
-  /** Clear Hash Table. */
-  ht.clear();
+  /** Create a Hash Table. */
+  ChainedHashTable<int> htO(m);  /** Ordered table. */
 
   /** 5.1.2. Ordered insertion. */
-  measureInsertion(ht, n, rng, dist, true);
+  measureInsertion(htO, n, rng, dist, true);
 
   /** 5.1.2. Ordered search. */
-  measureSearch(ht, e, rng, dist, true);
+  measureSearch(htO, e, rng, dist, true);
 
   /** 5.1.2. Ordered deletion. */
-  measureDeletion(ht, e, rng, dist, true);
+  measureDeletion(htO, e, rng, dist, true);
 
   return 0;
 }

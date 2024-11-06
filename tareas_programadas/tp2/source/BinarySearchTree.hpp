@@ -133,17 +133,6 @@ class BSTree {
   }
 
   /**
-   * @brief Removes all nodes from the tree.
-   *
-   * @details Frees memory occupied by each node, recursively traversing 
-   * from the root to all child nodes.
-   */
-  void clear() {
-    clear(root);
-    root = nullptr;
-  }
-
-  /**
    * @brief Inserts a new value into the tree.
    * 
    * @param value The value to be inserted into the tree.
@@ -302,78 +291,57 @@ class BSTree {
   }
 
   /**
-   * @note Why can inserting 𝑛 ordered keys into a binary search tree take too
-   * much time if 𝑛 is large?
-   * This is because inserting a sequence in sorted order (e.g., 0, 1, 2, ...,
-   * 𝑛 − 1) can result in an unbalanced tree, resembling a linked list. This
-   * configuration causes each insertion to require traversing most of the
-   * existing nodes, resulting in a time complexity of 𝑂(𝑛²) for all insertions
-   * combined. This inefficiency is due to the tree's height approaching 𝑛,
-   * which slows down operations as the tree becomes "skewed" rather than
-   * balanced.
+   * @brief Quickly inserts a sequence of nodes in increasing order, linking
+   * each new node as the right child of the previous node, starting from the
+   * rightmost node of the tree.
    *
-   * @note How can we avoid the long wait?
-   * To avoid the long wait, we can implement a fastInsert method that
-   * constructs a balanced BST directly. By recursively selecting the middle
-   * element of a given range (e.g., the middle of 0 to 𝑛 − 1) as the root, and
-   * then dividing the range to assign the left and right subtrees, we can
-   * efficiently create a balanced tree. This approach ensures that the tree's
-   * height remains 𝑂(log𝑛), resulting in an overall time complexity of 𝑂(𝑛)
-   * for the insertions, as each node is created and linked only once without
-   * additional traversal or rebalancing.
-   */
-
-  /**
-   * @brief Efficiently inserts an ordered sequence of keys by constructing a
-   * balanced tree.
-   * 
-   * @param n The number of keys in the ordered sequence.
+   * @details If the tree is empty, a root node is created with the value 0.
+   * The method then iterates 'n' times, each time moving to the rightmost node
+   * in the tree and attaching a new node as its right child. Each inserted
+   * node has an incrementally increasing value. This structure results in a
+   * linear tree configuration with all nodes linked to the right.
+   *
+   * @note This method is designed for cases where quick sequential insertions
+   * to the right are acceptable, but it results in an unbalanced tree.
    */
   void fastInsert(size_t n) {
-    root = buildBalancedTree(0, n - 1);
+    if (root == nullptr) {
+      /** If the tree is empty, creates the root node. */
+      root = new BSTreeNode<DataType>(0);
+    }
+    BSTreeNode<DataType>* node = root;  /** Starts from the root. */
+    for (size_t i = 0; i < n; ++i) {
+      while (node->right != nullptr) {
+        node = node->right;  /** Goes to the rigth child. */
+      }
+      BSTreeNode<DataType>* newNode = new BSTreeNode<DataType>(i);
+      /** Asigns the new node to the rigth child. */
+      node->right = newNode;
+      /** Asigns the parent of the new node. */
+      newNode->parent = node;
+      node = newNode;
+    }
   }
 
  private:
   BSTreeNode<DataType> *root;  /** The root node of the tree. */
 
-  /**
-   * @brief Recursively clears all nodes from the subtree rooted at the
-   * specified node.
-   *
-   * @param node The root node of the subtree to clear.
-   */
-  void clear(BSTreeNode<DataType> *node) {
-    if (node != nullptr) {
-      clear(node->left);
-      clear(node->right);
-      delete node;
+  void clear() {
+    if (root == nullptr) return;
+    std::stack<BSTreeNode<DataType>*> stack;
+    stack.push(root);
+    while (!stack.empty()) {
+      BSTreeNode<DataType>* current = stack.top();
+      stack.pop();
+      if (current->getLeft() != nullptr) {
+        stack.push(current->getLeft());
+      }
+      if (current->getRight() != nullptr) {
+        stack.push(current->getRight());
+      }
+      delete current;
     }
-  }
-
-  /**
-   * @brief Recursively builds a balanced binary search tree.
-   *
-   * @param start The start index for the range of keys.
-   * @param end The end index for the range of keys.
-   * @return Pointer to the root of the balanced subtree.
-   */
-  BSTreeNode<DataType>* buildBalancedTree(int start, int end) {
-    if (start > end) {
-      return nullptr;
-    }
-    /** Finds the mid value and creates a node for it. */
-    int mid = start + (end - start) / 2;
-    BSTreeNode<DataType>* node = new BSTreeNode<DataType>(mid);
-    /** Recursively builds the right and left subtrees. */
-    node->setLeft(buildBalancedTree(start, mid - 1));
-    if (node->getLeft()) {
-      node->getLeft()->setParent(node);
-    }
-    node->setRight(buildBalancedTree(mid + 1, end));
-    if (node->getRight()) {
-      node->getRight()->setParent(node);
-    }
-    return node;
+    root = nullptr;
   }
 
   /**

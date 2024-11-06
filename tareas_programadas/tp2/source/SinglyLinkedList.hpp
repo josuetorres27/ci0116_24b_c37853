@@ -109,17 +109,6 @@ class SLList {
     delete nil;  /** Frees sentinel after clearing the list. */
   }
 
-  /** Removes all nodes from the list. */
-  void clear() {
-    SLListNode<DataType> *current = nil->getNext();
-    while (current != nil) {
-      SLListNode<DataType> *toDelete = current;
-      current = current->getNext();
-      delete toDelete;
-    }
-    nil->setNext(nil);
-  }
-
   /**
    * @brief Inserts a value at the beginning of the list.
    * @param value The value to insert.
@@ -174,4 +163,15 @@ class SLList {
  private:
   /** Sentinel node to ease list operations. */
   SLListNode<DataType> *nil;
+
+  /** Removes all nodes from the list. */
+  void clear() {
+    SLListNode<DataType> *current = nil->getNext();
+    while (current != nil) {
+      SLListNode<DataType> *toDelete = current;
+      current = current->getNext();
+      delete toDelete;
+    }
+    nil->setNext(nil);
+  }
 };

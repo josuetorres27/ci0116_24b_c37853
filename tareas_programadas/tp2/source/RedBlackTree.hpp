@@ -177,17 +177,6 @@ class RBTree {
   }
 
   /**
-   * @brief Clears all nodes from the tree.
-   *
-   * @details Calls 'clearTree()' to recursively free memory starting from the
-   * root, then points the root to 'nil'.
-   */
-  void clear() {
-    clearTree(root);
-    root = nil;
-  }
-
-  /**
    * @brief Insertion function.
    *
    * @details Inserts a new node with the given value into the tree, ensuring
@@ -362,6 +351,17 @@ class RBTree {
 
   /** Sentinel node (NIL) used to represent empty nodes. */
   RBTreeNode<DataType> *nil;
+
+  /**
+   * @brief Clears all nodes from the tree.
+   *
+   * @details Calls 'clearTree()' to recursively free memory starting from the
+   * root, then points the root to 'nil'.
+   */
+  void clear() {
+    clearTree(root);
+    root = nil;
+  }
 
   /**
    * @brief Recursive function to clear all nodes from the tree, releasing node

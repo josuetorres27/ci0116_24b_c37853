@@ -128,18 +128,6 @@ class DLList {
     delete nil;
   }
 
-  /** Removes all nodes from the list. */
-  void clear() {
-    DLListNode<DataType> *current = nil->next;
-    while (current != nil) {
-      DLListNode<DataType> *toDelete = current;
-      current = current->next;
-      delete toDelete;
-    }
-    nil->next = nil;
-    nil->prev = nil;
-  }
-
   /**
    * @brief Inserts a value at the beginning of the list.
    * @param value The value to insert.
@@ -198,4 +186,19 @@ class DLList {
  private:
   /** Sentinel node to ease list operations. */
   DLListNode<DataType> *nil;
+
+  /** Removes all nodes from the list. */
+  void clear() {
+    DLListNode<DataType> *current = nil->next;
+    while (current != nil) {
+      DLListNode<DataType> *toDelete = current;
+      current = current->next;
+      delete toDelete;
+    }
+    nil->next = nil;
+    nil->prev = nil;
+  }
+
+  template <typename T>
+  friend class ChainedHashTable;
 };
