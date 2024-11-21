@@ -2,7 +2,6 @@
 
 #include "graph.hpp"
 
-// Funcion para verificar si una cadena es un numero valido.
 bool Graph::isNumber(const std::string& str) {
   for (char c : str) {
     if (!isdigit(c)) return false;
@@ -28,22 +27,21 @@ void Graph::printAdjList() {
   std::cout << std::endl << "Grafo procesado correctamente." << std::endl;
 }
 
-void createOutputDirectory(const std::string& path) {
+void Graph::createOutputDirectory(const std::string& path) {
   struct stat info;
   if (stat(path.c_str(), &info) != 0) {
-    // El directorio no existe, intenta crearlo.
+    // The directory does not exist, tries to create it.
     if (mkdir(path.c_str(), 0755) != 0) {
       std::cerr << "Error: No se pudo crear el directorio de salida: " << path
         << std::endl;
     }
   } else if (!(info.st_mode & S_IFDIR)) {
-    // Existe, pero no es un directorio.
+    // The name exists, but it is not a directory.
     std::cerr << "Error: Existe un archivo con el mismo nombre que el "
       "directorio: " << path << std::endl;
   }
 }
 
-// Funcion para leer el archivo CSV y construir el grafo.
 void Graph::readCSV(const std::string& filepath) {
   std::ifstream file(filepath);
 
@@ -54,7 +52,7 @@ void Graph::readCSV(const std::string& filepath) {
   }
 
   std::string line;
-  // Leer y descartar la cabecera.
+  // Read and discard the header.
   getline(file, line);
 
   while (getline(file, line)) {
@@ -67,7 +65,7 @@ void Graph::readCSV(const std::string& filepath) {
     getline(ss, targetName, ',');
     getline(ss, weightStr, ',');
 
-    // Validar que las columnas no esten vacias.
+    // Validate that the columns are not empty.
     if (sourceId.empty() || sourceName.empty() || targetId.empty() ||
       targetName.empty() || weightStr.empty()) {
       std::cerr << "Error: Linea mal formateada en el archivo: " << line
@@ -75,7 +73,7 @@ void Graph::readCSV(const std::string& filepath) {
       continue;
     }
 
-    // Validar que el peso sea un numero valido.
+    // Validate that the weight is a valid number.
     if (!isNumber(weightStr)) {
       std::cerr << "Error: Peso no valido en la linea: " << line << std::endl;
       continue;
@@ -83,7 +81,7 @@ void Graph::readCSV(const std::string& filepath) {
 
     int weight = stoi(weightStr);
 
-    // Añadir las conexiones al grafo usando solo los nombres.
+    // Add connections to the graph using only names.
     adjList[sourceName].push_back({targetName, weight});
     adjList[targetName].push_back({sourceName, weight});
   }
@@ -91,7 +89,7 @@ void Graph::readCSV(const std::string& filepath) {
 }
 
 void Graph::exportGraphToCSV(const std::string& filepath) {
-  // Asegurar que el directorio de salida exista.
+  // Ensure the output directory exists.
   std::string outputDir = "../output/";
   createOutputDirectory(outputDir);
 
@@ -120,7 +118,7 @@ void Graph::exportGraphToCSV(const std::string& filepath) {
 }
 
 void Graph::exportGraphToDOT(const std::string& filepath) {
-  // Asegurar que el directorio de salida exista.
+  // Ensure the output directory exists.
   std::string outputDir = "../output/";
   createOutputDirectory(outputDir);
 
@@ -150,7 +148,7 @@ void Graph::exportGraphToDOT(const std::string& filepath) {
   std::cout << "El grafo fue exportado al archivo DOT: " << fullPath
     << std::endl;
 
-  // Generar imagen PNG.
+  // Generate PNG image.
   std::cout << "Generar una imagen PNG del grafo (s/n): ";
   char option;
   std::cin >> option;

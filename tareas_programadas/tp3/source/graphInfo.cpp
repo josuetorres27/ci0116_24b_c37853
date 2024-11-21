@@ -19,7 +19,7 @@ void Graph::floydWarshall() {
     }
   }
 
-  // Aplicar el algoritmo de Floyd-Warshall.
+  // Apply the Floyd-Warshall algorithm.
   for (const auto& [k, _] : adjList) {
     for (const auto& [i, _] : adjList) {
       for (const auto& [j, _] : adjList) {
@@ -46,7 +46,7 @@ void Graph::cityPlaceEquipment() {
     for (const auto& j : floydWarshallDist[i.first]) {
       if (j.second == std::numeric_limits<int>::max()) {
         valid = false;
-        break;  // La ciudad no puede llegar a todas.
+        break;  // The city cannot reach all the other cities.
       }
       timeSum += j.second;
     }
@@ -111,26 +111,24 @@ void Graph::citiesFarthest() {
   int maxDistance = 0;
   std::vector<std::pair<std::string, std::string>> pairs;
 
-  // Iterar sobre las combinaciones de ciudades.
+  // Iterate over the city combinations.
   for (const auto& origin : floydWarshallDist) {
     for (const auto& destination : floydWarshallDist[origin.first]) {
       if (origin.first != destination.first &&
         destination.second != std::numeric_limits<int>::max()) {
-        // Si encuentra una nueva distancia máxima, actualizar.
+        // If a new maximum distance is found, update.
         if (destination.second > maxDistance) {
           maxDistance = destination.second;
           pairs.clear();
           pairs.emplace_back(origin.first, destination.first);
-        }
-        // Si es igual a la máxima, agregar el par a la lista.
-        else if (destination.second == maxDistance) {
+        } else if (destination.second == maxDistance) {
           pairs.emplace_back(origin.first, destination.first);
         }
       }
     }
   }
 
-  // Verificar si hay pares válidos.
+  // Check for valid pairs.
   if (pairs.empty()) {
     std::cout << "No se encontraron pares de ciudades distantes (grafo vacío o"
       " sin conexiones)." << std::endl;
@@ -138,7 +136,7 @@ void Graph::citiesFarthest() {
     std::cout << "El/Los par(es) de ciudades más distantes son:" << std::endl;
     for (const auto& par : pairs) {
       std::cout << par.first << " - " << par.second
-        << " con distancia " << maxDistance << std::endl;
+        << " (Distancia: " << maxDistance << ")" << std::endl;
     }
   }
 }
@@ -163,8 +161,8 @@ void Graph::citiesNearest() {
 
   std::cout << "El/Los par(es) de ciudades mas cercanas son:" << std::endl;
   for (const auto& par : pairs) {
-    std::cout << par.first << " - " << par.second << " con distancia "
-      << minDistance << std::endl;
+    std::cout << par.first << " - " << par.second << " (Distancia: "
+      << minDistance << ")" << std::endl;
   }
 }
 
@@ -191,6 +189,7 @@ void Graph::citiesAverageTime() {
 
   std::cout << "Ciudades ordenadas por tiempo promedio de viaje:" << std::endl;
   for (const auto& city : averages) {
-    std::cout << city.first << " con promedio " << city.second << std::endl;
+    std::cout << city.first << " (Promedio: " << city.second << ")"
+      << std::endl;
   }
 }

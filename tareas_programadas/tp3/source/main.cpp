@@ -10,23 +10,23 @@ int main() {
     "../tests/input_small.csv): ";
   std::cin >> filepath;
 
-  // Leer el archivo y construir el grafo.
+  // Read the file and build the graph.
   graph.readCSV(filepath);
 
-  // Verificar que el grafo no este vacio antes de continuar.
+  // Check that the graph is not empty before continuing.
   if (graph.adjList.empty()) {
     std::cout << "Error: No se pudo cargar el archivo de entrada. Por favor "
       "verifique el nombre y la ruta del archivo." << std::endl;
     return 1;
   }
 
-  // Mostrar la lista de adyacencia generada a partir del archivo.
+  // Display the adjacency list generated from the file.
   graph.printAdjList();
 
-  // Inicializar la matriz de distancias minimas.
+  // Initialize the minimum distance matrix.
   graph.floydWarshall();
 
-  // Menu de opciones.
+  // Options menu.
   while (true) {
     std::cout << "\nSeleccione una opcion:\n";
     std::cout << "1. Ciudad donde es mas efectivo colocar mayor capacidad de "
