@@ -1,0 +1,727 @@
+SourceId,SourceName,TargetId,TargetName,Weight
+0,Jiménez,1,Río Azul,10
+1,Río Azul,2,San Ignacio,2
+2,San Ignacio,3,Cipreses,3
+3,Cipreses,4,La Victoria,8
+4,La Victoria,5,Caño Negro,12
+5,Caño Negro,6,San Cristóbal,15
+6,San Cristóbal,7,San José,14
+7,San José,8,San Vicente,8
+8,San Vicente,9,Bahía Drake,15
+9,Bahía Drake,10,Santo Tomás,10
+10,Santo Tomás,11,Rancho Redondo,6
+11,Rancho Redondo,12,Macacona,2
+12,Macacona,13,Valle La Estrella,2
+13,Valle La Estrella,14,San Juan,12
+14,San Juan,15,Guaycará,9
+15,Guaycará,16,Tayutic,13
+16,Tayutic,17,Duacarí,15
+17,Duacarí,18,Guácima,6
+18,Guácima,19,Canoas,12
+19,Canoas,20,Buenos Aires,2
+20,Buenos Aires,21,San Pedro,2
+21,San Pedro,22,Pacuarito,3
+22,Pacuarito,23,San Rafael,1
+23,San Rafael,24,Hojancha,12
+24,Hojancha,25,Monterrey,15
+25,Monterrey,26,Santa Rosa,7
+26,Santa Rosa,27,Biolley,14
+27,Biolley,28,Limoncito,15
+28,Limoncito,29,Cinco Esquinas,14
+29,Cinco Esquinas,30,La Trinidad,1
+30,La Trinidad,31,Puente de Piedra,4
+31,Puente de Piedra,32,La Isabel,9
+32,La Isabel,33,Aguas Claras,1
+33,Aguas Claras,34,Santa Rita,7
+34,Santa Rita,35,Carmen,5
+35,Carmen,36,Frailes,13
+36,Frailes,37,Bahía Ballena,5
+37,Bahía Ballena,38,Chirripó,6
+38,Chirripó,39,Sabalito,10
+39,Sabalito,40,San Nicolás,14
+40,San Nicolás,41,Bebedero,15
+41,Bebedero,42,San Pedro,1
+42,San Pedro,43,Santa Rosa,5
+43,Santa Rosa,44,Cot,2
+44,Cot,45,San Lorenzo,12
+45,San Lorenzo,46,Uruca,7
+46,Uruca,47,Llanos de Santa Lucía,11
+47,Llanos de Santa Lucía,48,Copey,2
+48,Copey,49,Santiago,10
+49,Santiago,50,Acapulco,14
+50,Acapulco,51,San Jorge,6
+51,San Jorge,52,Cutris,1
+52,Cutris,53,Mogote,11
+53,Mogote,54,Pacayas,9
+54,Pacayas,55,Picagres,1
+55,Picagres,56,Bejuco,12
+56,Bejuco,57,Birrisito,4
+57,Birrisito,58,La Suiza,9
+58,La Suiza,59,Pocosol,14
+59,Pocosol,60,San Francisco,3
+60,San Francisco,61,La Amistad,8
+61,La Amistad,62,Palmichal,12
+62,Palmichal,63,San Josecito,15
+63,San Josecito,64,Río Blanco,14
+64,Río Blanco,65,Sierpe,4
+65,Sierpe,66,Palmares,9
+66,Palmares,67,Cervantes,6
+67,Cervantes,68,Rodríguez,7
+68,Rodríguez,69,Colón,3
+69,Colón,70,Sixaola,2
+70,Sixaola,71,Concepción,11
+71,Concepción,72,Sabanillas,1
+72,Sabanillas,73,San Mateo,2
+73,San Mateo,74,Nosara,10
+74,Nosara,75,Jesús,5
+75,Jesús,76,Venecia,15
+76,Venecia,77,Concepción,1
+77,Concepción,78,Corredor,7
+78,Corredor,79,San Antonio,7
+79,San Antonio,80,Siquirres,2
+80,Siquirres,81,San Isidro,8
+81,San Isidro,82,Grifo Alto,5
+82,Grifo Alto,83,Santa María,8
+83,Santa María,84,Venado,3
+84,Venado,85,Sarchí Sur,13
+85,Sarchí Sur,86,San Rafael,6
+86,San Rafael,87,San Miguel,2
+87,San Miguel,88,Cañas Dulces,12
+88,Cañas Dulces,89,Orotina,9
+89,Orotina,90,Limón,15
+90,Limón,91,San Felipe,1
+91,San Felipe,92,Cóbano,1
+92,Cóbano,93,Mansión,10
+93,Mansión,94,La Ceiba,11
+94,La Ceiba,95,Carara,12
+95,Carara,96,Jaris,13
+96,Jaris,97,Escobal,11
+97,Escobal,98,Mata Redonda,7
+98,Mata Redonda,99,Porvenir,11
+99,Porvenir,100,San Miguel,5
+100,San Miguel,101,Anselmo Llorente,14
+101,Anselmo Llorente,102,Santiago,3
+102,Santiago,103,Sabanilla,7
+103,Sabanilla,104,Patarrá,15
+104,Patarrá,105,Savegre,4
+105,Savegre,106,Laurel,10
+106,Laurel,107,Tacares,9
+107,Tacares,108,Quebrada Honda,12
+108,Quebrada Honda,109,Pejibaye,2
+109,Pejibaye,110,Hatillo,4
+110,Hatillo,111,San Rafael,10
+111,San Rafael,112,Buenavista,4
+112,Buenavista,113,Cureña,8
+113,Cureña,114,San Isidro,14
+114,San Isidro,115,Santa Lucía,2
+115,Santa Lucía,116,Puerto Viejo,7
+116,Puerto Viejo,117,Salitral,3
+117,Salitral,118,Rincón de Sabanilla,7
+118,Rincón de Sabanilla,119,Desamparados,15
+119,Desamparados,120,La Cruz,1
+120,La Cruz,121,Santa Bárbara,14
+121,Santa Bárbara,122,Buenos Aires,5
+122,Buenos Aires,123,Guaitil,4
+123,Guaitil,124,Chomes,11
+124,Chomes,125,Nicoya,11
+125,Nicoya,126,Daniel Flores,14
+126,Daniel Flores,127,Tierra Blanca,13
+127,Tierra Blanca,128,San Pedro,7
+128,San Pedro,129,San Pedro,11
+129,San Pedro,130,Monte Verde,1
+130,Monte Verde,131,San Jerónimo,14
+131,San Jerónimo,132,San Lorenzo,12
+132,San Lorenzo,133,Santa Isabel,11
+133,Santa Isabel,134,San Juan de Mata,3
+134,San Juan de Mata,135,Palmar,9
+135,Palmar,136,Pavas,6
+136,Pavas,137,Piedras Negras,1
+137,Piedras Negras,138,La Garita,4
+138,La Garita,139,Palmira,12
+139,Palmira,140,Llanuras del Gaspar,4
+140,Llanuras del Gaspar,141,San Isidro,12
+141,San Isidro,142,Pitahaya,14
+142,Pitahaya,143,Garita,7
+143,Garita,144,Bratsi,13
+144,Bratsi,145,Curridabat,15
+145,Curridabat,146,El Cairo,3
+146,El Cairo,147,Alegría,3
+147,Alegría,148,Guacimal,12
+148,Guacimal,149,Mercedes,6
+149,Mercedes,150,San Josecito,9
+150,San Josecito,151,Las Juntas,3
+151,Las Juntas,152,San Francisco,10
+152,San Francisco,153,Candelaria,9
+153,Candelaria,154,San Ramón,2
+154,San Ramón,155,Santa Elena,8
+155,Santa Elena,156,Guácimo,7
+156,Guácimo,157,Pavones,9
+157,Pavones,158,Caldera,7
+158,Caldera,159,Belén,2
+159,Belén,160,Pocora,11
+160,Pocora,161,San Pedro,12
+161,San Pedro,162,Cariari,1
+162,Cariari,163,Coyolar,1
+163,Coyolar,164,Batán,15
+164,Batán,165,Parrita,8
+165,Parrita,166,Cañas,1
+166,Cañas,167,Santo Domingo,11
+167,Santo Domingo,168,Santa Ana,8
+168,Santa Ana,169,Carmen,12
+169,Carmen,170,Monte Romo,2
+170,Monte Romo,171,Carrillos,3
+171,Carrillos,172,Aguabuena,8
+172,Aguabuena,173,Chira,5
+173,Chira,174,San Isidro,14
+174,San Isidro,175,Tres Ríos,12
+175,Tres Ríos,176,Llano Grande,13
+176,Llano Grande,177,San Antonio,15
+177,San Antonio,178,Manzanillo,7
+178,Manzanillo,179,Las Horquetas,3
+179,Las Horquetas,180,Quebrada Grande,9
+180,Quebrada Grande,181,Carmona,6
+181,Carmona,182,San Antonio,3
+182,San Antonio,183,Santa Rita,13
+183,Santa Rita,184,Purral,8
+184,Purral,185,Llorente,13
+185,Llorente,186,Filadelfia,5
+186,Filadelfia,187,Tres Equis,12
+187,Tres Equis,188,Zaragoza,11
+188,Zaragoza,189,Monterrey,5
+189,Monterrey,190,San Roque,11
+190,San Roque,191,San Rafael,12
+191,San Rafael,192,San Antonio,2
+192,San Antonio,193,Cuajiniquil,8
+193,Cuajiniquil,194,Curubandé,13
+194,Curubandé,195,Tempate,5
+195,Tempate,196,Quebradilla,13
+196,Quebradilla,197,Potrero Cerrado,9
+197,Potrero Cerrado,198,San Rafael,11
+198,San Rafael,199,Palmira,15
+199,Palmira,200,Pittier,5
+200,Pittier,201,Arenal,2
+201,Arenal,202,Tilarán,11
+202,Tilarán,203,Paracito,2
+203,Paracito,204,San Juan,4
+204,San Juan,205,Alfaro,12
+205,Alfaro,206,Tabarcia,6
+206,Tabarcia,207,Matina,4
+207,Matina,208,Turrúcares,6
+208,Turrúcares,209,Aguacaliente,3
+209,Aguacaliente,210,Pital,11
+210,Pital,211,Sabana Redonda,15
+211,Sabana Redonda,212,La Granja,2
+212,La Granja,213,Sánchez,4
+213,Sánchez,214,Concepción,1
+214,Concepción,215,San Isidro,6
+215,San Isidro,216,Jesús María,6
+216,Jesús María,217,San Pablo,10
+217,San Pablo,218,Bolívar,10
+218,Bolívar,219,Concepción,9
+219,Concepción,220,Cachí,9
+220,Cachí,221,Santo Domingo,1
+221,Santo Domingo,222,Canalete,12
+222,Canalete,223,Capellades,13
+223,Capellades,224,San Jerónimo,3
+224,San Jerónimo,225,Palmira,5
+225,Palmira,226,El Rosario,6
+226,El Rosario,227,Santa Cruz,4
+227,Santa Cruz,228,Santa Rosa,14
+228,Santa Rosa,229,Dulce Nombre,2
+229,Dulce Nombre,230,Liberia,10
+230,Liberia,231,Puntarenas,4
+231,Puntarenas,232,San Rafael,14
+232,San Rafael,233,Jacó,1
+233,Jacó,234,San Rafael,4
+234,San Rafael,235,Río Segundo,1
+235,Río Segundo,236,Espíritu Santo,9
+236,Espíritu Santo,237,Matambú,5
+237,Matambú,238,Barbacoas,12
+238,Barbacoas,239,Puerto Jiménez,4
+239,Puerto Jiménez,240,Laguna,10
+240,Laguna,241,San Diego,15
+241,San Diego,242,Concepción,2
+242,Concepción,243,Río Nuevo,3
+243,Río Nuevo,244,San Francisco de Dos Ríos,13
+244,San Francisco de Dos Ríos,245,Damas,1
+245,Damas,246,La Ribera,7
+246,La Ribera,247,Rivas,10
+247,Rivas,248,Florencia,10
+248,Florencia,249,Florida,5
+249,Florida,250,San Miguel,15
+250,San Miguel,251,San José,9
+251,San José,252,San Sebastián,11
+252,San Sebastián,253,Cangrejal,6
+253,Cangrejal,254,Tirrases,1
+254,Tirrases,255,Ipís,5
+255,Ipís,256,Dulce Nombre,4
+256,Dulce Nombre,257,Golfito,9
+257,Golfito,258,Brunka,2
+258,Brunka,259,Upala,15
+259,Upala,260,Chires,8
+260,Chires,261,Volio,7
+261,Volio,262,Zapotal,10
+262,Zapotal,263,Occidental,5
+263,Occidental,264,El Tejar,4
+264,El Tejar,265,Potrero Grande,9
+265,Potrero Grande,266,Tucurrique,1
+266,Tucurrique,267,Cabeceras,8
+267,Cabeceras,268,San Marcos,9
+268,San Marcos,269,San Rafael,9
+269,San Rafael,270,Peralta,7
+270,Peralta,271,Matama,10
+271,Matama,272,San Antonio,2
+272,San Antonio,273,Boruca,9
+273,Boruca,274,Colorado,6
+274,Colorado,275,Sardinal,7
+275,Sardinal,276,Peñas Blancas,15
+276,Peñas Blancas,277,San Isidro,9
+277,San Isidro,278,Vuelta de Jorco,6
+278,Vuelta de Jorco,279,Tambor,1
+279,Tambor,280,Pará,5
+280,Pará,281,San Luis,11
+281,San Luis,282,Llano Bonito,15
+282,Llano Bonito,283,Jardín,1
+283,Jardín,284,Hacienda Vieja,5
+284,Hacienda Vieja,285,La Virgen,11
+285,La Virgen,286,Cascajal,1
+286,Cascajal,287,Labrador,6
+287,Labrador,288,Sámara,14
+288,Sámara,289,Bagaces,5
+289,Bagaces,290,San Gabriel,12
+290,San Gabriel,291,Ángeles,8
+291,Ángeles,292,San José,6
+292,San José,293,Escazú,13
+293,Escazú,294,Porozal,15
+294,Porozal,295,Katira,10
+295,Katira,296,San Vicente,3
+296,San Vicente,297,Río Naranjo,3
+297,Río Naranjo,298,Granadilla,1
+298,Granadilla,299,San Juan,11
+299,San Juan,300,Santiago,13
+300,Santiago,301,Candelarita,10
+301,Candelarita,302,Tamarindo,5
+302,Tamarindo,303,San Antonio,5
+303,San Antonio,304,Puerto Carrillo,7
+304,Puerto Carrillo,305,Turrialba,6
+305,Turrialba,306,Santa Cecilia,4
+306,Santa Cecilia,307,Piedras Blancas,9
+307,Piedras Blancas,308,Patalillo,8
+308,Patalillo,309,Atenas,10
+309,Atenas,310,Pilas,4
+310,Pilas,311,San Francisco,14
+311,San Francisco,312,Desamparaditos,5
+312,Desamparaditos,313,Río Jiménez,7
+313,Río Jiménez,314,San Antonio,5
+314,San Antonio,315,Pavón,9
+315,Pavón,316,Dos Ríos,6
+316,Dos Ríos,317,El General,2
+317,El General,318,San Juan,12
+318,San Juan,319,San Miguel,7
+319,San Miguel,320,Brasil,3
+320,Brasil,321,Líbano,7
+321,Líbano,322,Zapote,12
+322,Zapote,323,Paraíso,8
+323,Paraíso,324,Germania,1
+324,Germania,325,Orosi,4
+325,Orosi,326,Isla del Coco,3
+326,Isla del Coco,327,San Rafael,2
+327,San Rafael,328,Zapotal,15
+328,Zapotal,329,Esquipulas,8
+329,Esquipulas,330,Barva,9
+330,Barva,331,Aserrí,5
+331,Aserrí,332,Brisas,7
+332,Brisas,333,San Juan de Dios,15
+333,San Juan de Dios,334,San Pablo,1
+334,San Pablo,335,El Roble,9
+335,El Roble,336,Guadalupe,4
+336,Guadalupe,337,Desmonte,9
+337,Desmonte,338,Tárcoles,1
+338,Tárcoles,339,Gravilias,13
+339,Gravilias,340,Guayabo,5
+340,Guayabo,341,Los Guido,14
+341,Los Guido,342,Santiago,14
+342,Santiago,343,Puerto Cortés,3
+343,Puerto Cortés,344,Quepos,14
+344,Quepos,345,Carrandi,6
+345,Carrandi,346,Dulce Nombre de Jesús,1
+346,Dulce Nombre de Jesús,347,Rosario,12
+347,Rosario,348,San Juan,6
+348,San Juan,349,Piedades Norte,7
+349,Piedades Norte,350,Lepanto,8
+350,Lepanto,351,Heredia,8
+351,Heredia,352,Legua,8
+352,Legua,353,Delicias,10
+353,Delicias,354,Sarchí Norte,15
+354,Sarchí Norte,355,Miramar,9
+355,Miramar,356,San Rafael Abajo,2
+356,San Rafael Abajo,357,Cote,1
+357,Cote,358,San Juan,13
+358,San Juan,359,Platanares,1
+359,Platanares,360,Telire,11
+360,Telire,361,Cajón,11
+361,Cajón,362,Yolillal,1
+362,Yolillal,363,Mercedes,4
+363,Mercedes,364,San Jerónimo,13
+364,San Jerónimo,365,El Mastate,12
+365,El Mastate,366,Desamparados,2
+366,Desamparados,367,Nacascolo,15
+367,Nacascolo,368,Varablanca,14
+368,Varablanca,369,San Ramón,7
+369,San Ramón,370,Chánguena,13
+370,Chánguena,371,San Isidro,7
+371,San Isidro,372,Santa Eulalia,7
+372,Santa Eulalia,373,Uruca,3
+373,Uruca,374,Tierras Morenas,10
+374,Tierras Morenas,375,Calle Blancos,5
+375,Calle Blancos,376,Piedades Sur,14
+376,Piedades Sur,377,San Isidro de El General,2
+377,San Isidro de El General,378,Colima,11
+378,Colima,379,Paquera,10
+379,Paquera,380,Quesada,1
+380,Quesada,381,Santa Rosa,7
+381,Santa Rosa,382,Reventazón,10
+382,Reventazón,383,Sarapiquí,5
+383,Sarapiquí,384,Bijagua,5
+384,Bijagua,385,San Pablo,13
+385,San Pablo,386,Aguas Zarcas,9
+386,Aguas Zarcas,387,La Fortuna,14
+387,La Fortuna,388,La Palmera,9
+388,La Palmera,389,San Pablo,3
+389,San Pablo,390,San José,13
+390,San José,391,Oriental,7
+391,Oriental,392,La Tigra,9
+392,La Tigra,393,Veintisiete de Abril,7
+393,Veintisiete de Abril,394,La Asunción,6
+394,La Asunción,395,Santiago,15
+395,Santiago,396,Naranjo,11
+396,Naranjo,397,San Rafael,5
+397,San Rafael,398,Colorado,9
+398,Colorado,399,Naranjito,12
+399,Naranjito,400,San Carlos,14
+400,San Carlos,401,San Juan Grande,1
+401,San Juan Grande,402,Santa Cruz,1
+402,Santa Cruz,403,Hospital,1
+403,Hospital,404,Tronadora,1
+404,Tronadora,405,Grecia,7
+405,Grecia,406,Ulloa,13
+406,Ulloa,407,Sierra,10
+407,Sierra,408,Alajuelita,15
+408,Alajuelita,409,Quitirrisí,9
+409,Quitirrisí,410,Huacas,11
+410,Huacas,411,Mayorga,6
+411,Mayorga,412,San José de la Montaña,2
+412,San José de la Montaña,413,Tapesco,9
+413,Tapesco,414,San Rafael Arriba,11
+414,San Rafael Arriba,415,El Amparo,9
+415,El Amparo,416,Purabá,6
+416,Purabá,417,Roxana,1
+417,Roxana,418,San Rafael,5
+418,San Rafael,419,La Colonia,3
+419,La Colonia,420,San Isidro,3
+420,San Isidro,421,Tarbaca,10
+421,Tarbaca,422,Santa Cruz,15
+422,Santa Cruz,423,San Pedro,5
+423,San Pedro,424,Barranca,15
+424,Barranca,425,Arancibia,8
+425,Arancibia,426,Merced,1
+426,Merced,427,Concepción,7
+427,Concepción,428,Catedral,11
+428,Catedral,429,Cahuita,11
+429,Cahuita,430,Chacarita,11
+430,Chacarita,431,Guápiles,3
+431,Guápiles,432,Guadalupe,4
+432,Guadalupe,433,Tuis,11
+433,Tuis,434,Jesús,7
+434,Jesús,435,Patio de Agua,7
+435,Patio de Agua,436,Rita,13
+436,Rita,437,Santa Teresita,15
+437,Santa Teresita,438,Colinas,11
+438,Colinas,439,Juan Viñas,2
+439,Juan Viñas,440,Lagunillas,7
+440,Lagunillas,441,La Cuesta,13
+441,La Cuesta,442,Guadalupe,1
+442,Guadalupe,443,San Isidro,11
+443,San Isidro,444,La Fortuna,15
+444,La Fortuna,445,Pejibaye,3
+445,Pejibaye,446,Mercedes Sur,6
+446,Mercedes Sur,447,La Unión,8
+447,La Unión,448,Barú,15
+448,Barú,449,San Vito,2
+449,San Vito,450,Volcán,3
+450,Volcán,451,San Pedro,2
+451,San Pedro,452,Tures,4
+452,Tures,453,Sabanilla,1
+453,Sabanilla,454,Los Chiles,15
+454,Los Chiles,455,Cabo Velas,2
+455,Cabo Velas,456,San Antonio,12
+456,San Antonio,457,Ángeles,5
+457,Ángeles,458,Salitrillos,1
+458,Salitrillos,459,San Roque,1
+459,San Roque,460,Belén de Nosarita,8
+460,Belén de Nosarita,461,Mercedes,12
+461,Mercedes,462,Cirrí Sur,3
+462,Cirrí Sur,463,Piedades,9
+463,Piedades,464,Mercedes,4
+464,Mercedes,465,Cartagena,9
+465,Cartagena,466,Mata de Plátano,12
+466,Mata de Plátano,467,San José,13
+467,San José,468,Zarcero,8
+468,Zarcero,469,Zapote,8
+469,Zapote,470,Barrantes,2
+470,Barrantes,471,San Juan,9
+471,San Juan,472,Palmitos,3
+472,Palmitos,473,San Rafael,3
+473,San Rafael,474,San Andrés,12
+474,San Andrés,475,Diriá,10
+475,Diriá,476,San Joaquín,11
+476,San Joaquín,477,Tobosi,2
+477,Tobosi,478,Páramo,8
+478,Páramo,479,San Pablo,14
+479,San Pablo,480,Buenavista,11
+480,Buenavista,481,Corralillo,1
+481,Corralillo,482,Alajuela,9
+482,Alajuela,483,San José,6
+483,San José,484,Río Cuarto,9
+484,Río Cuarto,485,Bolsón,5
+485,Bolsón,486,Pozos,3
+486,Pozos,487,Toro Amarillo,3
+487,Toro Amarillo,488,León XIII,2
+488,León XIII,489,Carrizal,8
+489,Carrizal,490,Gutiérrez Braun,9
+490,Gutiérrez Braun,1,Río Azul,8
+489,Carrizal,445,Pejibaye,6
+485,Bolsón,259,Upala,3
+479,San Pablo,70,Sixaola,9
+478,Páramo,127,Tierra Blanca,7
+477,Tobosi,63,San Josecito,1
+473,San Rafael,156,Guácimo,11
+470,Barrantes,464,Mercedes,1
+469,Zapote,272,San Antonio,6
+467,San José,400,San Carlos,5
+466,Mata de Plátano,59,Pocosol,5
+465,Cartagena,299,San Juan,1
+460,Belén de Nosarita,239,Puerto Jiménez,15
+457,Ángeles,14,San Juan,4
+456,San Antonio,136,Pavas,10
+455,Cabo Velas,75,Jesús,5
+453,Sabanilla,189,Monterrey,10
+452,Tures,29,Cinco Esquinas,8
+451,San Pedro,184,Purral,3
+450,Volcán,97,Escobal,8
+449,San Vito,312,Desamparaditos,5
+448,Barú,103,Sabanilla,7
+446,Mercedes Sur,26,Santa Rosa,13
+444,La Fortuna,211,Sabana Redonda,8
+441,La Cuesta,256,Dulce Nombre,14
+440,Lagunillas,191,San Rafael,8
+438,Colinas,71,Concepción,5
+434,Jesús,342,Santiago,3
+433,Tuis,413,Tapesco,2
+432,Guadalupe,150,San Josecito,9
+430,Chacarita,242,Concepción,10
+427,Concepción,371,San Isidro,4
+426,Merced,267,Cabeceras,14
+425,Arancibia,332,Brisas,7
+422,Santa Cruz,84,Venado,1
+418,San Rafael,190,San Roque,14
+417,Roxana,334,San Pablo,12
+416,Purabá,163,Coyolar,11
+415,El Amparo,138,La Garita,13
+411,Mayorga,114,San Isidro,5
+407,Sierra,271,Matama,4
+406,Ulloa,282,Llano Bonito,8
+405,Grecia,121,Santa Bárbara,13
+404,Tronadora,68,Rodríguez,3
+403,Hospital,187,Tres Equis,5
+402,Santa Cruz,179,Las Horquetas,8
+401,San Juan Grande,228,Santa Rosa,14
+397,San Rafael,216,Jesús María,7
+396,Naranjo,135,Palmar,5
+395,Santiago,122,Buenos Aires,13
+394,La Asunción,86,San Rafael,3
+393,Veintisiete de Abril,338,Tárcoles,11
+388,La Palmera,298,Granadilla,8
+387,La Fortuna,202,Tilarán,9
+386,Aguas Zarcas,252,San Sebastián,8
+385,San Pablo,53,Mogote,6
+382,Reventazón,379,Paquera,2
+378,Colima,170,Monte Romo,1
+375,Calle Blancos,369,San Ramón,7
+374,Tierras Morenas,232,San Rafael,4
+373,Uruca,347,Rosario,13
+371,San Isidro,305,Turrialba,13
+369,San Ramón,23,San Rafael,12
+366,Desamparados,177,San Antonio,6
+365,El Mastate,20,Buenos Aires,5
+363,Mercedes,250,San Miguel,12
+360,Telire,75,Jesús,11
+359,Platanares,180,Quebrada Grande,5
+352,Legua,22,Pacuarito,4
+351,Heredia,252,San Sebastián,15
+349,Piedades Norte,77,Concepción,8
+348,San Juan,166,Cañas,11
+343,Puerto Cortés,79,San Antonio,4
+342,Santiago,249,Florida,12
+341,Los Guido,242,Concepción,5
+340,Guayabo,202,Tilarán,15
+339,Gravilias,67,Cervantes,11
+337,Desmonte,315,Pavón,9
+335,El Roble,274,Colorado,4
+334,San Pablo,317,El General,5
+332,Brisas,140,Llanuras del Gaspar,2
+326,Isla del Coco,142,Pitahaya,8
+325,Orosi,197,Potrero Cerrado,3
+322,Zapote,111,San Rafael,12
+320,Brasil,101,Anselmo Llorente,6
+315,Pavón,54,Pacayas,13
+312,Desamparaditos,153,Candelaria,10
+310,Pilas,163,Coyolar,14
+309,Atenas,143,Garita,1
+308,Patalillo,21,San Pedro,13
+305,Turrialba,195,Tempate,2
+301,Candelarita,61,La Amistad,5
+300,Santiago,125,Nicoya,3
+298,Granadilla,150,San Josecito,6
+297,Río Naranjo,89,Orotina,4
+295,Katira,211,Sabana Redonda,9
+294,Porozal,204,San Juan,7
+293,Escazú,250,San Miguel,5
+292,San José,269,San Rafael,9
+291,Ángeles,212,La Granja,2
+290,San Gabriel,282,Llano Bonito,13
+287,Labrador,52,Cutris,1
+285,La Virgen,259,Upala,7
+284,Hacienda Vieja,103,Sabanilla,14
+281,San Luis,105,Savegre,3
+278,Vuelta de Jorco,172,Aguabuena,5
+276,Peñas Blancas,163,Coyolar,10
+275,Sardinal,65,Sierpe,4
+274,Colorado,206,Tabarcia,5
+272,San Antonio,207,Matina,12
+270,Peralta,242,Concepción,6
+266,Tucurrique,198,San Rafael,5
+265,Potrero Grande,155,Santa Elena,10
+263,Occidental,227,Santa Cruz,1
+262,Zapotal,166,Cañas,4
+261,Volio,125,Nicoya,8
+260,Chires,250,San Miguel,11
+259,Upala,27,Biolley,8
+258,Brunka,104,Patarrá,1
+257,Golfito,55,Picagres,10
+255,Ipís,12,Macacona,9
+254,Tirrases,131,San Jerónimo,7
+250,San Miguel,169,Carmen,12
+248,Florencia,45,San Lorenzo,7
+245,Damas,23,San Rafael,3
+243,Río Nuevo,72,Sabanillas,6
+241,San Diego,56,Bejuco,10
+239,Puerto Jiménez,185,Llorente,12
+238,Barbacoas,29,Cinco Esquinas,6
+235,Río Segundo,113,Cureña,9
+232,San Rafael,230,Liberia,9
+230,Liberia,132,San Lorenzo,4
+228,Santa Rosa,0,Jiménez,13
+224,San Jerónimo,64,Río Blanco,10
+223,Capellades,145,Curridabat,15
+220,Cachí,142,Pitahaya,8
+217,San Pablo,36,Frailes,8
+213,Sánchez,38,Chirripó,3
+208,Turrúcares,202,Tilarán,9
+207,Matina,118,Rincón de Sabanilla,11
+206,Tabarcia,105,Savegre,10
+204,San Juan,78,Corredor,15
+200,Pittier,46,Uruca,4
+199,Palmira,63,San Josecito,1
+197,Potrero Cerrado,75,Jesús,2
+196,Quebradilla,82,Grifo Alto,7
+194,Curubandé,81,San Isidro,8
+191,San Rafael,12,Macacona,10
+190,San Roque,11,Rancho Redondo,6
+189,Monterrey,131,San Jerónimo,12
+188,Zaragoza,28,Limoncito,9
+184,Purral,83,Santa María,11
+182,San Antonio,110,Hatillo,12
+181,Carmona,127,Tierra Blanca,8
+180,Quebrada Grande,18,Guácima,9
+179,Las Horquetas,135,Palmar,7
+177,San Antonio,13,Valle La Estrella,11
+176,Llano Grande,121,Santa Bárbara,4
+173,Chira,85,Sarchí Sur,10
+170,Monte Romo,134,San Juan de Mata,7
+169,Carmen,79,San Antonio,12
+168,Santa Ana,138,La Garita,7
+166,Cañas,142,Pitahaya,5
+165,Parrita,57,Birrisito,4
+161,San Pedro,20,Buenos Aires,8
+160,Pocora,49,Santiago,13
+158,Caldera,138,La Garita,2
+156,Guácimo,67,Cervantes,7
+153,Candelaria,9,Bahía Drake,2
+152,San Francisco,131,San Jerónimo,8
+147,Alegría,92,Cóbano,9
+145,Curridabat,92,Cóbano,15
+144,Bratsi,33,Aguas Claras,12
+142,Pitahaya,122,Buenos Aires,11
+140,Llanuras del Gaspar,9,Bahía Drake,11
+139,Palmira,23,San Rafael,1
+138,La Garita,56,Bejuco,12
+137,Piedras Negras,51,San Jorge,6
+136,Pavas,67,Cervantes,7
+135,Palmar,28,Limoncito,4
+132,San Lorenzo,38,Chirripó,2
+128,San Pedro,63,San Josecito,10
+124,Chomes,119,Desamparados,15
+122,Buenos Aires,84,Venado,15
+121,Santa Bárbara,94,La Ceiba,1
+117,Salitral,89,Orotina,14
+113,Cureña,42,San Pedro,13
+112,Buenavista,17,Duacarí,6
+108,Quebrada Honda,76,Venecia,13
+106,Laurel,95,Carara,10
+104,Patarrá,88,Cañas Dulces,10
+103,Sabanilla,34,Santa Rita,2
+101,Anselmo Llorente,33,Aguas Claras,4
+98,Mata Redonda,96,Jaris,3
+97,Escobal,94,La Ceiba,8
+96,Jaris,80,Siquirres,3
+95,Carara,55,Picagres,3
+94,La Ceiba,16,Tayutic,8
+90,Limón,48,Copey,9
+89,Orotina,83,Santa María,8
+87,San Miguel,68,Rodríguez,2
+85,Sarchí Sur,51,San Jorge,5
+83,Santa María,78,Corredor,9
+82,Grifo Alto,33,Aguas Claras,7
+81,San Isidro,19,Canoas,2
+77,Concepción,24,Hojancha,14
+75,Jesús,13,Valle La Estrella,2
+73,San Mateo,28,Limoncito,9
+71,Concepción,50,Acapulco,3
+70,Sixaola,22,Pacuarito,4
+69,Colón,61,La Amistad,1
+68,Rodríguez,5,Caño Negro,13
+66,Palmares,29,Cinco Esquinas,7
+62,Palmichal,40,San Nicolás,8
+60,San Francisco,5,Caño Negro,2
+57,Birrisito,54,Pacayas,10
+51,San Jorge,6,San Cristóbal,10
+50,Acapulco,29,Cinco Esquinas,6
+46,Uruca,34,Santa Rita,10
+45,San Lorenzo,34,Santa Rita,6
+44,Cot,11,Rancho Redondo,14
+43,Santa Rosa,24,Hojancha,14
+40,San Nicolás,29,Cinco Esquinas,9
+36,Frailes,30,La Trinidad,5
+33,Aguas Claras,17,Duacarí,9
+28,Limoncito,23,San Rafael,13
+23,San Rafael,9,Bahía Drake,9
+22,Pacuarito,6,San Cristóbal,3
+21,San Pedro,17,Duacarí,15
+18,Guácima,0,Jiménez,8
+14,San Juan,0,Jiménez,13
+12,Macacona,9,Bahía Drake,1
+10,Santo Tomás,1,Río Azul,12
+8,San Vicente,3,Cipreses,2
+4,La Victoria,1,Río Azul,6
+3,Cipreses,1,Río Azul,1

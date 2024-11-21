@@ -42,19 +42,19 @@ int main() {
 
     switch (selected_option) {
       case 1:
-        graph.ciudadColocarEquipo();
+        graph.cityPlaceEquipment();
         break;
       case 2:
-        graph.ciudadDespacharApoyo();
+        graph.cityDispatchSupport();
         break;
       case 3:
-        graph.ciudadesMasDistantes();
+        graph.citiesFarthest();
         break;
       case 4:
-        graph.ciudadesMasCercanas();
+        graph.citiesNearest();
         break;
       case 5:
-        graph.ciudadesPorTiempoPromedio();
+        graph.citiesAverageTime();
         break;
       case 6:
         std::cout << "Seleccione el formato de exportacion:\n";

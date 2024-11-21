@@ -1,0 +1,13 @@
+SourceId,SourceName,TargetId,TargetName,Weight
+0,Boruca,1,Platanares,15
+1,Platanares,2,San Miguel,15
+2,San Miguel,3,Biolley,13
+3,Biolley,4,La Virgen,10
+4,La Virgen,5,Santiago,7
+5,Santiago,6,San Ramón,13
+6,San Ramón,7,San Pedro,12
+7,San Pedro,8,Colima,6
+8,Colima,9,Jesús,12
+9,Jesús,1,Platanares,8
+7,San Pedro,2,San Miguel,13
+4,La Virgen,1,Platanares,1
