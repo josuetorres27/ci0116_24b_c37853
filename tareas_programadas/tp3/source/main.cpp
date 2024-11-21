@@ -24,11 +24,11 @@ int main() {
   graph.printAdjList();
 
   // Inicializar la matriz de distancias minimas.
-  //graph.floydWarshall();
+  graph.floydWarshall();
 
-  // Menu de selected_optiones.
+  // Menu de opciones.
   while (true) {
-    std::cout << "\nSeleccione una selected_option:\n";
+    std::cout << "\nSeleccione una opcion:\n";
     std::cout << "1. Ciudad donde es mas efectivo colocar mayor capacidad de "
       "equipo.\n";
     std::cout << "2. Mejor ciudad para apoyar a una ciudad dada.\n";
@@ -64,10 +64,10 @@ int main() {
         std::cin >> sub_option;
         switch (sub_option) {
           case 1:
-            graph.exportGraphToCSV("grafo_exportado.csv");
+            graph.exportGraphToCSV("grafo_generado.csv");
             break;
           case 2:
-            graph.exportGraphToDOT("grafo_exportado.dot");
+            graph.exportGraphToDOT("grafo_generado.dot");
             break;
           default:
             std::cout << "Opcion no valida. Regresando al menu principal." <<

@@ -133,7 +133,7 @@ void Graph::exportGraphToDOT(const std::string& filepath) {
     return;
   }
 
-  dotFile << "Grafo {" << std::endl;
+  dotFile << "graph Grafo {" << std::endl;
 
   for (const auto& pair : adjList) {
     for (const auto& edge : pair.second) {
@@ -163,8 +163,7 @@ void Graph::exportGraphToDOT(const std::string& filepath) {
       std::cout << "Imagen PNG generada exitosamente en: " << pngPath
         << std::endl;
     } else {
-      std::cerr << "Error: No se pudo generar la imagen PNG. Asegurese de "
-        "tener Graphviz instalado." << std::endl;
+      std::cerr << "Error: No se pudo generar la imagen PNG." << std::endl;
     }
   }
 }
