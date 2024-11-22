@@ -72,7 +72,8 @@ void Graph::cityPlaceEquipment() {
 void Graph::cityDispatchSupport() {
   std::string destination;
   std::cout << "Ingrese el nombre de la ciudad destino: ";
-  std::cin >> destination;
+  std::cin.ignore();
+  std::getline(std::cin, destination);
 
   if (floydWarshallDist.find(destination) == floydWarshallDist.end()) {
     std::cout << "La ciudad ingresada no existe en el grafo." << std::endl;
@@ -83,8 +84,8 @@ void Graph::cityDispatchSupport() {
   std::vector<std::string> bestCities;
 
   for (const auto& i : floydWarshallDist) {
-    if (i.first != destination && floydWarshallDist[i.first][destination] <
-      minDistance) {
+    if (i.first != destination &&
+      floydWarshallDist[i.first][destination] < minDistance) {
       minDistance = floydWarshallDist[i.first][destination];
       bestCities.clear();
       bestCities.push_back(i.first);
@@ -114,7 +115,7 @@ void Graph::citiesFarthest() {
   // Iterate over the city combinations.
   for (const auto& origin : floydWarshallDist) {
     for (const auto& destination : floydWarshallDist[origin.first]) {
-      if (origin.first != destination.first &&
+      if (origin.first < destination.first &&
         destination.second != std::numeric_limits<int>::max()) {
         // If a new maximum distance is found, update.
         if (destination.second > maxDistance) {
@@ -145,21 +146,23 @@ void Graph::citiesNearest() {
   int minDistance = std::numeric_limits<int>::max();
   std::vector<std::pair<std::string, std::string>> pairs;
 
-  for (const auto& i : floydWarshallDist) {
-    for (const auto& j : floydWarshallDist[i.first]) {
-      if (i.first != j.first && j.second != std::numeric_limits<int>::max()) {
-        if (j.second < minDistance) {
-          minDistance = j.second;
+  for (const auto& origin : floydWarshallDist) {
+    for (const auto& destination : floydWarshallDist[origin.first]) {
+      if (origin.first < destination.first &&
+        destination.second != std::numeric_limits<int>::max()) {
+        // If a new minimum distance is found, update.
+        if (destination.second < minDistance) {
+          minDistance = destination.second;
           pairs.clear();
-          pairs.push_back({i.first, j.first});
-        } else if (j.second == minDistance) {
-          pairs.push_back({i.first, j.first});
+          pairs.emplace_back(origin.first, destination.first);
+        } else if (destination.second == minDistance) {
+          pairs.emplace_back(origin.first, destination.first);
         }
       }
     }
   }
 
-  std::cout << "El/Los par(es) de ciudades mas cercanas son:" << std::endl;
+  std::cout << "El/Los par(es) de ciudades más cercanas son:" << std::endl;
   for (const auto& par : pairs) {
     std::cout << par.first << " - " << par.second << " (Distancia: "
       << minDistance << ")" << std::endl;
