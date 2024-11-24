@@ -1,0 +1,13 @@
+SourceName,TargetName,Weight
+Jesús,Platanares,8
+Colima,San Pedro,6
+Colima,Jesús,12
+San Pedro,San Ramón,12
+La Virgen,Santiago,7
+La Virgen,Platanares,1
+Biolley,San Miguel,13
+Biolley,La Virgen,10
+San Miguel,San Pedro,13
+San Ramón,Santiago,13
+Platanares,San Miguel,15
+Boruca,Platanares,15
